@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-image: url('patient1.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll; 
+                background-size: cover;
+            }
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; 
+        }
+
+        .login-container {
+            background-color: rgba(36, 4, 4, 0.712); 
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px; 
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgb(0, 0, 0);
+        }
+
+        .login-container:hover {
+            box-shadow: 0 0 20px rgb(255, 255, 255);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: white; /* White text color */
+            padding: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.616); /* Lighter white for placeholder */
+        }
+
+        .form-control:focus {
+            background-color: rgba(0, 0, 0, 0.541);
+            outline: none;
+            box-shadow: none;
+            color: #ffffff;
+        }
+
+        #donor {
+            background-color: #da1626; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #donor:hover {
+            background-color: #ffae00;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .form-check {
+            margin-bottom: 15px;
+        }
+
+        .form-check-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .btn-outline-light {
+            color: white;
+            border-color: white;
+        }
+
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .image-container {
+            width: 70px;
+            height: 70px;
+            background: #da1608;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .image-container img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .home-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            border-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #da1626;
+            padding: 5px 10px;
+            border-radius: 5px; 
+            z-index: 1;
+        }
+
+        .home-button:hover {
+            background-color: #ffae00;
+            color: #ffffff;
+            border-color: rgb(255, 255, 255);
+        }
+        @media (max-width: 768px) {
+            .home-button {
+                font-size: 16px;
+                padding: 5px 8px;
+            }
+        }
+        .back-button {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            border-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #da1626;
+            padding: 5px 10px;
+            border-radius: 5px; 
+            z-index: 1;
+        }
+
+        .back-button:hover {
+            background-color: #ffae00;
+            color: #ffffff;
+            border-color: rgb(255, 255, 255);
+        }
+        @media (max-width: 768px) {
+            .back-button {
+                font-size: 16px;
+                padding: 5px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-button">🏠︎ Home</a>
+    <a href="beforeyourequest.html" class="back-button">⮜ Back</a>
+
+    <div class="container">
+        <div class="login-container text-">
+            <div class="image-container mx-auto">
+            <img src="heart.webp" class="img-fluid"></div><br>
+            <h1>Request blood</h1>
+            <h6 style="color: #ffffff;">Please provide honest and accurate personal information so we can communicate effectively. Thank you for your cooperation!</h6>
+                <br>
+            <div class="mb-3">
+                <input type="text" id="donorName" class="form-control" placeholder="Complete Name" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" id="donorEmail" class="form-control" placeholder="Email / Google account" required>
+            </div>
+            <div class="mb-3">
+                <input type="tel" id="donorContact" class="form-control" placeholder="Contact Number" required>
+            </div>
+            <div class="mb-3">
+                <select id="donorBloodType" class="form-control" required>
+                    <option value="">Blood Type Needed</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <select id="donorLocation" class="form-control" required>
+                    <option value="">Select Location</option>
+                    <option value="Nasipit">Nasipit</option>
+                    <option value="Buenavista">Buenavista</option>
+                    <option value="Carmen">Carmen</option>
+                    <option value="Butuan">Butuan</option>
+                    <option value="Jabonga">Jabonga</option>
+                    <option value="Kitcharao">Kitcharao</option>
+                    <option value="Las Nieves">Las Nieves</option>
+                    <option value="Magallanes">Magallanes</option>
+                    <option value="RTR">RTR</option>
+                    <option value="Santiago">Santiago</option>
+                    <option value="Tubay">Tubay</option>
+                    <option value="Cabadbaran">Cabadbaran</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <p>Date:</p>
+                <input type="date" id="donorBirthday" class="form-control" required>
+            </div>
+            <p>Your picture:</p>
+            <div class="mb-3">
+                <input type="file" id="donorImage" class="form-control" accept="image" required>
+            </div>
+            <button type="submit" class="btn btn-danger w-100" id="donor">REQUEST</button>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>
