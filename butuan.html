@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blod - Blood Donation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+        }
+        .header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.header a {
+    color: black;
+    text-decoration: none;
+    margin: 5px 15px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .header a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+        .navbar {
+            background-color: #da1626 !important;
+            padding: 10px 20px;
+        }
+        .navbar-brand {
+            font-size: 22px;
+            font-weight: bold;
+            color: white !important;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 16px;
+            margin: 0 10px;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ffd700 !important;
+            transform: scale(1.1);
+        }
+        .navbar-toggler {
+            border: none;
+            background-color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #312929;
+        }
+        .navbar-toggler-icon {
+            filter: invert(100%);
+        }
+        .navbar img{
+            border-radius: 30px;
+        }
+        .btn-outline-light {
+            border-color: rgb(0, 0, 0);
+            color: rgb(0, 0, 0);
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            background-color: #d49711;
+            box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.3);
+
+        }
+        .btn-outline-light:hover {
+            background-color: #ffae00;
+            color: #ffffff;
+            box-shadow: 0px 10px 5px rgba(235, 199, 0, 0.87);
+
+        }
+        .hero {
+            background: url('blod.jpg') center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 50px;
+            font-weight: bold;
+        }
+        .btn-main {
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn-main:hover {
+            background-color: #a53030;
+            color: white;
+        }
+        .footer {
+            background-color: rgb(230, 226, 226);
+            color: rgb(31, 29, 29);
+            padding: 40px 0;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .container img {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+        .carousel {
+            position: relative;
+        }
+
+        .carousel img {
+            height: 500px; /* Adjust this height as needed */
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            width: 100%;
+        }
+
+        .carousel::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+        }
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .card {
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 10px #dc3545;
+        }
+            .button {
+                display: inline-block;
+                background-color: #dc3545;
+                color: white;
+                padding: 10px 15px;
+                text-decoration: none;
+                border-radius: 5px;
+            }
+            @media (max-width: 768px) {
+                .card {
+                    min-height: auto;
+                }
+            }
+            .btn-custom {
+                min-width: 120px; /* Ensures uniform width */
+                padding: 10px 20px; /* Adjusts button size */
+                font-size: 16px; /* Makes text more readable */
+            }
+            #sign{
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+                background-color: #cc3c37;
+                color: #f8f9fa;
+                font-size: 16px;
+            }
+            #sign:hover{
+                background-color: #ffae00;
+            }
+            #send{
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+                background-color: #1258c2;
+                color: #f8f9fa;
+                font-size: 16px;
+                box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.3);
+            }
+            #send:hover{
+                background-color: #ffae00;
+            }
+            #message{
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #312929;
+            }
+            #bloodmain {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column; /* Ensures content stacks properly */
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .donate-button {
+            color: rgb(255, 255, 255);
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            font-size: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #da1626;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            border-radius: 5px; 
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .donate-button:hover {
+            background-color: #ffae00;
+            color: #ffffff;
+            border-color: rgb(255, 255, 255);
+        }
+        #butuan{
+            width: 100%;
+            max-width: 1000px; /* Sets a maximum width for the image */
+            height: auto;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            border-color: #555555;
+            border: solid;
+        }
+        #hospital{
+            width: 80%;
+            max-width: 1000px; /* Sets a maximum width for the image */
+            height: auto;
+            border-radius: 30px;
+            margin-bottom: 30px;
+        }
+        #place{
+            text-align: center;
+        }
+        .row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header text-center bg-light" id="#top">
+        <a class="text-dark" href="tel:+639918821655">📞 (+63) 9918-821-655</a>
+        <a class="text-dark" href="mailto:info@example.com">✉️ info@example.com</a>
+        <a class="text-dark" href="https://www.google.com/local/place/fid/0x3301ca2f04581cbb:0xe4e2656c7835d5f2/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3DpdVDUhSkANIHs_1mfcIGRw%26cb_client%3Dlu.gallery.gps%26w%3D160%26h%3D106%26yaw%3D308.6075%26pitch%3D0%26thumbfov%3D100&amp;ik=CAISFnBkVkRVaFNrQU5JSHNfMW1mY0lHUnc%3D" target="_blank">📍 Agusan del Norte, Nasipit, SMCC</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="heart.webp" alt="logo" class="me-2" style="width: 40px; height: 40px;">
+                BloodConnect
+            </a>
+            <!-- Toggler Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="whygiveblood.html">Why give Blood</a></li>
+                    <li class="nav-item"><a class="nav-link" href="whocangiveblood.html">Who can give Blood</a></li>
+                    <li class="nav-item"><a class="nav-link" href="donationprocess.html">Donation Process</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wheretodonate.html">Where to Donate</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News & Campaigns</a></li><br>
+                </ul>
+                <!--Sign Buttons -->
+                <div class="d-flex flex-column flex-lg-row align-items-center ms-lg-2">
+                    <a href="beforeyoudonate.html" class="btn btn-outline-light me-lg-2 mb-2 mb-lg-0">Donate</a><br>
+                    <a href="beforeyourequest.html" class="btn btn-outline-light me-lg-2 mb-2 mb-lg-0">Request</a><br>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--Why give blood-->
+    <div class="container text-left mt-4">
+
+            <br>
+            <button class="text-light mb-5" id="sign"><a style="color: white;" href="news.html">Back</a></button>
+        
+    <br><h1>Donate Blood in Butuan</h1>
+        <p>Donating blood is a vital act of altruism that can save lives and improve the health of recipients. In Butuan City, as in the rest of the Philippines, the need for blood donations is constant, supporting patients undergoing surgeries, trauma victims, and individuals with medical conditions like anemia.</p>
+        <h3>Health Benefits for Donors</h3>
+        <p>Beyond the life-saving impact on recipients, donating blood offers health benefits for donors:</p>
+        <ul>
+            <li><b>Iron Regulation: </b>Regular blood donation helps in reducing iron overload, which can lower the risk of heart disease.</li>
+            <li><b>Health Monitoring: </b>Each donation involves a basic health check, providing an opportunity to monitor vital signs and detect potential health issues early.</li>
+            <li><b>Psychological Well-being: </b>The act of donating blood can boost mental health by fostering a sense of purpose and community connection.</li>
+        </ul>
+        <div id="place">
+            <img id="butuan" src="butuan.webp" alt="butuan">
+        </div>
+        <div id="bloodmain">
+            <button class="donate-button" onclick="findNearestDonationPlace()">Find Nearest Donation <br> Place in Butuan</button>
+            <div id="donationResults"></div>
+        </div>
+        <div><br><br>
+            <h2>Hospitals and Clinics in Butuan City:</h2>
+            <p>"We use <b>Google Maps</b> to know the complete address and phone number of the Hospital and Clinics"</p>
+            <p>✅Click the image</p>
+
+            <!--ROWS-->
+            <div class="row"></div>
+            <ol>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/Butuan+Medical+Center/@8.9618773,125.5835303,17z/data=!3m1!4b1!4m6!3m5!1s0x3301bf9db1da5a87:0xdee900fcebc2641e!8m2!3d8.961872!4d125.5861106!16s%2Fg%2F1thl2yz1?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D">
+                            <img id="hospital" src="butuanmedical.jpg" alt="Butuan Medical Center" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Butuan Medical Center</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/Manuel+J.+Santos+Hospital/@8.9471003,125.5382547,17z/data=!3m1!4b1!4m6!3m5!1s0x3301c046e2d65b71:0xb3fe1ed685e96e96!8m2!3d8.947095!4d125.540835!16s%2Fg%2F1tdql5bc?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D">
+                            <img id="hospital" src="manuel.png" alt="Manuel J. Santos Hospital" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Manuel J. Santos Hospital</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/Butuan+Doctors'+Hospital/@8.9438873,125.5196677,17z/data=!3m1!4b1!4m6!3m5!1s0x3301c057d4c76947:0x484d93a7e609330b!8m2!3d8.943882!4d125.522248!16s%2Fg%2F1tdx674c?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D">
+                            <img id="hospital" src="doctors.jpg" alt="Butuan Doctors' Hospital" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Butuan Doctors' Hospital</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/Allied+Care+Experts+Medical+Center+Butuan/@8.9334072,125.5369171,17z/data=!3m1!4b1!4m6!3m5!1s0x3301c1b1a6c76515:0xef306be6422b148b!8m2!3d8.9334019!4d125.5394974!16s%2Fg%2F11f8h8__7t?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D">
+                            <img id="hospital" src="alliedd.jpg" alt="Allied Care Experts Medical Center Butuan" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Allied Care Experts Medical Center Butuan</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/Agusan+Del+Norte+Provincial+Hospital/@8.9480812,125.50291,17z/data=!3m1!4b1!4m6!3m5!1s0x3301c0e601ffd6b1:0x79bac252ed8d5c43!8m2!3d8.9480759!4d125.5054903!16s%2Fg%2F1tfq251n?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D">
+                            <img id="hospital" src="agusan.jpg" alt="Agusan Del Norte Provincial Hospital" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Agusan Del Norte Provincial Hospital</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/search?sca_esv=540846efa2b16f65&tbm=lcl&q=Hospitals+in+Butuan+city&rflfq=1&num=10&sa=X&ved=2ahUKEwja0P_Ux_iLAxXYsFYBHf2oKmEQjGp6BAgiEAE&biw=1225&bih=643&dpr=1.5#rlfi=hd:;si:12672396661004898126,l,ChhIb3NwaXRhbHMgaW4gQnV0dWFuIGNpdHlInsbKwOaqgIAIWigQABgAGAIYAyIYaG9zcGl0YWxzIGluIGJ1dHVhbiBjaXR5KgQIAxAAkgEIaG9zcGl0YWyqAVoKCC9tLzBocG5yEAEqDSIJaG9zcGl0YWxzKAAyHxABIhsIc3P-QMW4SD6TezNaW_rqIiv4tuPjla6-G9wyHBACIhhob3NwaXRhbHMgaW4gYnV0dWFuIGNpdHk;mv:[[9.006447699999999,125.79839589999999],[8.448801099999999,124.6088461]]">
+                            <img id="hospital" src="caraga.jpg" alt="Caraga Hospital" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Caraga Hospital</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/search?sca_esv=540846efa2b16f65&tbm=lcl&q=Hospitals+in+Butuan+city&rflfq=1&num=10&sa=X&ved=2ahUKEwja0P_Ux_iLAxXYsFYBHf2oKmEQjGp6BAgiEAE&biw=1225&bih=643&dpr=1.5#rlfi=hd:;si:6169786745330283883,l,ChhIb3NwaXRhbHMgaW4gQnV0dWFuIGNpdHlIxq-k-qyqgIAIWigQABgAGAIYAyIYaG9zcGl0YWxzIGluIGJ1dHVhbiBjaXR5KgQIAxAAkgEIaG9zcGl0YWyqAVoKCC9tLzBocG5yEAEqDSIJaG9zcGl0YWxzKAAyHxABIhsIc3P-QMW4SD6TezNaW_rqIiv4tuPjla6-G9wyHBACIhhob3NwaXRhbHMgaW4gYnV0dWFuIGNpdHk;mv:[[9.006447699999999,125.79839589999999],[8.448801099999999,124.6088461]]">
+                            <img id="hospital" src="elisa.jpg" alt="Elisa R. Ochoa Memorial and Maternity General Hospital" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Elisa R. Ochoa Memorial and Maternity General Hospital</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/Butuan+Maternity+Hospital+and+Puericulture+Center/@8.9479092,125.5427316,17z/data=!3m1!4b1!4m6!3m5!1s0x3301c038a848d4fd:0xc25cbdb7d00b228d!8m2!3d8.9479039!4d125.5453119!16s%2Fg%2F1pzpyffyh?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D">
+                            <img id="hospital" src="maternity.jpg" alt="Butuan Maternity Hospital and Puericulture Center" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Butuan Maternity Hospital and Puericulture Center</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/Holy+Child+Colleges+of+Butuan+Hospital/@8.9416809,125.535256,17z/data=!3m1!4b1!4m6!3m5!1s0x3301c04ed0ea1aa9:0xf492cc1224045f73!8m2!3d8.9416756!4d125.5378363!16s%2Fg%2F1tt1drz5?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D">
+                            <img id="hospital" src="holy.jpg" alt="Holy Child Colleges of Butuan Hospital" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Holy Child Colleges of Butuan Hospital</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/search?sca_esv=540846efa2b16f65&tbm=lcl&q=Hospitals+in+Butuan+city&rflfq=1&num=10&sa=X&ved=2ahUKEwja0P_Ux_iLAxXYsFYBHf2oKmEQjGp6BAgiEAE&biw=1225&bih=643&dpr=1.5#rlfi=hd:;si:237538208974402081,l,ChhIb3NwaXRhbHMgaW4gQnV0dWFuIGNpdHlaICIYaG9zcGl0YWxzIGluIGJ1dHVhbiBjaXR5KgQIAxAAkgEIaG9zcGl0YWyqAVoKCC9tLzBocG5yEAEqDSIJaG9zcGl0YWxzKAAyHxABIhsIc3P-QMW4SD6TezNaW_rqIiv4tuPjla6-G9wyHBACIhhob3NwaXRhbHMgaW4gYnV0dWFuIGNpdHk;mv:[[9.006447699999999,125.79839589999999],[8.448801099999999,124.6088461]]">
+                            <img id="hospital" src="hipol.jpg" alt="HIPOL FAMILY HOSPITAL" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">HIPOL FAMILY HOSPITAL</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/search?sca_esv=540846efa2b16f65&tbm=lcl&q=Hospitals+in+Butuan+city&rflfq=1&num=10&sa=X&ved=2ahUKEwja0P_Ux_iLAxXYsFYBHf2oKmEQjGp6BAgiEAE&biw=1225&bih=643&dpr=1.5#rlfi=hd:;si:3957440413859841925,l,ChhIb3NwaXRhbHMgaW4gQnV0dWFuIGNpdHlI9L6kzvaBgIAIWigQABgAGAIYAyIYaG9zcGl0YWxzIGluIGJ1dHVhbiBjaXR5KgQIAxAAkgEIaG9zcGl0YWyqAVoKCC9tLzBocG5yEAEqDSIJaG9zcGl0YWxzKAAyHxABIhsIc3P-QMW4SD6TezNaW_rqIiv4tuPjla6-G9wyHBACIhhob3NwaXRhbHMgaW4gYnV0dWFuIGNpdHk;mv:[[9.006447699999999,125.79839589999999],[8.448801099999999,124.6088461]]">
+                            <img id="hospital" src="pnp.jpg" alt="PNP Hospital RO13" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">PNP Hospital RO13</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card" style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/search?sca_esv=540846efa2b16f65&tbm=lcl&q=Hospitals+in+Butuan+city&rflfq=1&num=10&sa=X&ved=2ahUKEwja0P_Ux_iLAxXYsFYBHf2oKmEQjGp6BAgiEAE&biw=1225&bih=643&dpr=1.5#rlfi=hd:;si:4712065271068495731,l,ChhIb3NwaXRhbHMgaW4gQnV0dWFuIGNpdHlI1emnsKyPgIAIWigQABgAGAIYAyIYaG9zcGl0YWxzIGluIGJ1dHVhbiBjaXR5KgQIAxAAkgERZGlhZ25vc3RpY19jZW50ZXKqAVoKCC9tLzBocG5yEAEqDSIJaG9zcGl0YWxzKAAyHxABIhsIc3P-QMW4SD6TezNaW_rqIiv4tuPjla6-G9wyHBACIhhob3NwaXRhbHMgaW4gYnV0dWFuIGNpdHk;mv:[[9.006447699999999,125.79839589999999],[8.448801099999999,124.6088461]]">
+                            <img id="hospital" src="clinics.jpg" alt="Butuan Health Care Clinics and Laboratory" style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Butuan Health Care Clinics and Laboratory</span>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+    </div>
+
+    <!--ROW-->
+            <div class="row">
+                <div class="col-md-4 ">
+                    <div class="card text-center p-3">
+                        <br>
+                        <h3>Become a blood donor</h3>
+                        <a href="beforeyoudonate.html" class="donate-button">Donate now!</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#top" id="bloodmain"> >> Back to top</a>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>BloodConnect</h5>
+                    <p>We need your help now more than ever to keep providing lifesaving blood to the NHS.<br>Please book an appointment in Buenavista, Butuan, and Nasipit area.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Links</h5>
+                    <a class="text-dark" href="https://www.facebook.com/profile.php?id=100087208967948">Facebook page</a><br>
+                    <a class="text-dark"  href="https://www.youtube.com/@BloodConnect-2025">YouTube page</a><br>
+                </div>
+                <div class="col-md-4">
+                    <h5>Message Us</h5>
+                    <p>What is your concern?</p>
+                    <textarea id="message" class="form-control mb-4" placeholder="Your Message" required></textarea>
+                    <button class="btn mt-2" id="send">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Array sa mga hospitals/clinics (ibutang ang tinuod nga coordinates)
+        const donationPlaces = [
+            { name: "Butuan Medical Center", latitude: 8.9534, longitude: 125.5413 },
+            { name: "Manuel J. Santos Hospital", latitude: 8.9569, longitude: 125.5444 },
+            { name: "Butuan Doctors' Hospital", latitude: 8.9499, longitude: 125.5426 },
+            { name: "Allied Care Experts Medical Center Butuan", latitude: 8.9547, longitude: 125.5441 },
+            { name: "Agusan Del Norte Provincial Hospital", latitude: 8.9527, longitude: 125.5581 },
+            { name: "Caraga Regional Hospital", latitude: 8.9611, longitude: 125.5644 },
+            { name: "Elisa R. Ochoa Memorial and Maternity General Hospital", latitude: 8.9544, longitude: 125.5415 },
+            { name: "Holy Child Colleges of Butuan Hospital", latitude: 8.9502, longitude: 125.5418 }
+        ];
+
+        function findNearestDonationPlace() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const userLatitude = position.coords.latitude;
+                        const userLongitude = position.coords.longitude;
+
+                        // Pangitaa ang pinakaduol nga donation place
+                        const nearestPlace = findNearest(userLatitude, userLongitude, donationPlaces);
+
+                        // Ipakita ang resulta
+                        displayResult(nearestPlace, userLatitude, userLongitude);
+                    },
+                    (error) => {
+                        alert("Error getting location: " + error.message);
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function findNearest(userLat, userLng, places) {
+            let nearest = null;
+            let shortestDistance = Infinity;
+
+            for (const place of places) {
+                const distance = calculateDistance(userLat, userLng, place.latitude, place.longitude);
+                if (distance < shortestDistance) {
+                    shortestDistance = distance;
+                    nearest = { ...place, distance: distance };
+                }
+            }
+
+            return nearest;
+        }
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radius of the earth in km
+            const dLat = deg2rad(lat2 - lat1);
+            const dLon = deg2rad(lon2 - lon1);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distance = R * c; // Distance in km
+            return distance;
+        }
+
+        function deg2rad(deg) {
+            return deg * (Math.PI / 180)
+        }
+
+        function displayResult(place, userLat, userLng) {
+            const donationResultsDiv = document.getElementById("donationResults");
+            if (place) {
+                donationResultsDiv.innerHTML = `
+                    <p>The nearest donation place is <b>${place.name}</b>, located ${place.distance.toFixed(2)} km away.</p>
+                `;
+            } else {
+                donationResultsDiv.innerHTML = "<p>No donation places found.</p>";
+            }
+        }
+    </script>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>
