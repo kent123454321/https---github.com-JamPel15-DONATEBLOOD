@@ -83,18 +83,18 @@
         }
 
         #donor {
-            background-color: #da1626; 
+            background-color: #164ada; 
             color: white;
             border: none;
             border-radius: 5px;
             padding: 12px 20px;
-            width: 100%;
+            width: 50%; /* Adjust width as needed */
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
         #donor:hover {
-            background-color: #ffae00;
+            background-color: #2cb13d;
         }
 
         .close-btn {
@@ -194,77 +194,110 @@
                 padding: 5px 8px;
             }
         }
+        .button-container {
+            display: flex;
+            gap: 10px; /* Adjust as needed */
+        }
+
+        #cancel {
+            background-color: grey;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            width: 50%; /* Adjust width as needed */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #cancel:hover {
+            background-color: rgb(153, 27, 27);
+        }
     </style>
 </head>
 <body>
     <a href="index.html" class="home-button">Home</a>
     <a href="beforeyoudonate.html" class="back-button">Back</a>
-
     <div class="container">
         <div class="login-container text-">
             <div class="image-container mx-auto">
-            <img src="heart.webp" class="img-fluid"></div><br>
-            <h1>Donate blood</h1>
-            <h6 style="color: #ffffff;">Please provide honest and accurate personal information so we can communicate effectively. Thank you for your cooperation!</h6>
-                <br>
-            <div class="mb-3">
-                <input type="text" id="donorName" class="form-control" placeholder="Complete Name" required>
+                <img src="heart.webp" class="img-fluid">
             </div>
-            <div class="mb-3">
-                <input type="email" id="donorEmail" class="form-control" placeholder="Email / Google account" required>
-            </div>
-            <div class="mb-3">
-                <input type="tel" id="donorContact" class="form-control" placeholder="Contact Number" required>
-            </div>
-            <div class="mb-3">
-                <select id="donorBloodType" class="form-control" required>
-                    <option value="">Your Blood Type</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <select id="donorLocation" class="form-control" required>
-                    <option value="">Select Barangay.</option>
-                    <option value="Aclan">Aclan</option>
-                    <option value="Amontay">Amontay</option>
-                    <option value="Ata-atahon">Ata-atahon</option>
-                    <option value="Barangay 1 (Poblacion)">Barangay 1 (Poblacion)</option>
-                    <option value="Barangay 2 (Poblacion)">JaboBarangay 2 (Poblacion)</option>
-                    <option value="Barangay 3 (Poblacion)">Barangay 3 (Poblacion)</option>
-                    <option value="Barangay 3 (Poblacion)">Barangay 3 (Poblacion)</option>
-                    <option value="Barangay 4 (Poblacion)">Barangay 4 (Poblacion)</option>
-                    <option value="Barangay 5 (Poblacion)">Barangay 5 (Poblacion)</option>
-                    <option value="Barangay 6 (Poblacion)">Barangay 6 (Poblacion)</option>
-                    <option value="Barangay 7 (Poblacion)">Barangay 7 (Poblacion)</option>
-                    <option value="Camagong">Camagong</option>
-                    <option value="Cubi-Cubi">Cubi-Cubi</option>
-                    <option value="Culit">Culit</option>
-                    <option value="Jaguimitan">Jaguimitan</option>
-                    <option value="Kinabjangan">Kinabjangan</option>
-                    <option value="Punta">Punta</option>
-                    <option value="Santa Ana">Santa Ana</option>
-                    <option value="Talisay">Talisay</option>
-                    <option value="Triangulo">Triangulo</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <p>Date:</p>
-                <input type="date" id="date" class="form-control" required>
-            </div>
-            <p>Your picture:</p>
-            <div class="mb-3">
-                <input type="file" id="donorImage" class="form-control" accept="image" required>
-            </div>
-            <button type="submit" class="btn btn-danger w-100" id="donor">DONATE</button>
+            <br>
+            <h1 style="text-align: center;">Donate Blood</h1>
+            <h6 style="color: #c2bcbc; text-align: center;">It’s quick and easy.</h6>
+            <br>
+            <form id="donationForm">
+                <div class="mb-3">
+                    <input type="text" id="donorName" class="form-control" placeholder="Complete name" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" id="donorEmail" class="form-control" placeholder="Mobile number or email" required>
+                </div>
+                <div class="mb-3">
+                    <select id="donorGender" class="form-control" required>
+                        <option value="">Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select id="donorBloodType" class="form-control" required>
+                        <option value="">Your blood type</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select id="donorLocation" class="form-control" required>
+                        <option value="">Select barangay</option>
+                        <option value="Aclan">Aclan</option>
+                        <option value="Amontay">Amontay</option>
+                        <option value="Ata-atahon">Ata-atahon</option>
+                        <option value="Barangay 1 (Poblacion)">Barangay 1 (Poblacion)</option>
+                        <option value="Barangay 2 (Poblacion)">Barangay 2 (Poblacion)</option>
+                        <option value="Barangay 3 (Poblacion)">Barangay 3 (Poblacion)</option>
+                        <option value="Barangay 4 (Poblacion)">Barangay 4 (Poblacion)</option>
+                        <option value="Barangay 5 (Poblacion)">Barangay 5 (Poblacion)</option>
+                        <option value="Barangay 6 (Poblacion)">Barangay 6 (Poblacion)</option>
+                        <option value="Barangay 7 (Poblacion)">Barangay 7 (Poblacion)</option>
+                        <option value="Camagong">Camagong</option>
+                        <option value="Cubi-Cubi">Cubi-Cubi</option>
+                        <option value="Culit">Culit</option>
+                        <option value="Jaguimitan">Jaguimitan</option>
+                        <option value="Kinabjangan">Kinabjangan</option>
+                        <option value="Punta">Punta</option>
+                        <option value="Santa Ana">Santa Ana</option>
+                        <option value="Talisay">Talisay</option>
+                        <option value="Triangulo">Triangulo</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    Date:
+                    <input type="date" id="date" class="form-control" required>
+                </div>
+                Your picture:
+                <div class="mb-3">
+                    <input type="file" id="donorImage" class="form-control" accept="image" required>
+                </div>
+                <div class="button-container">
+                    <button type="button" class="btn btn-secondary w-50" id="cancel">CANCEL</button>
+                    <button type="submit" class="btn btn-danger w-50" id="donor">DONATE</button>
+                </div>
+            </form>
         </div>
     </div>
+    <script>
+        document.getElementById('cancel').addEventListener('click', function() {
+            document.getElementById('donationForm').reset();
+        });
+    </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
