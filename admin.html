@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-image: url('patient1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+                background-size: cover;
+            }
+        }
+
+        .container {
+            background-color: rgba(36, 4, 4, 0.712);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgb(0, 0, 0);
+        }
+
+        .container:hover {
+            box-shadow: 0 0 20px rgb(255, 255, 255);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background-color: #f0f0f0;
+            color: black;
+        }
+
+        .image-container {
+            width: 70px;
+            height: 70px;
+            background: #da1608;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .image-container img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container mx-auto">
+            <img src="heart.webp" class="img-fluid">
+        </div>
+        <br>
+        <h1 style="text-align: center;">Admin Panel</h1>
+        <h6 style="color: #c2bcbc; text-align: center;">Manage Requests and Donations</h6>
+        <br>
+        <h3>Requests</h3>
+        <table id="requestsTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Blood Type</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody id="requestsBody">
+            </tbody>
+        </table>
+<br><br>
+        <h3>Donations</h3>
+        <table id="donationsTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Blood Type</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody id="donationsBody">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to display requests
+        function displayRequests() {
+            const requests = JSON.parse(localStorage.getItem('requests')) || [];
+            const requestsBody = document.getElementById('requestsBody');
+
+            requestsBody.innerHTML = ''; // Clear previous data
+
+            requests.forEach(request => {
+                if (request.name && request.email && request.gender && request.bloodType && request.location && request.date && request.image) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${request.name}</td>
+                        <td>${request.email}</td>
+                        <td>${request.gender}</td>
+                        <td>${request.bloodType}</td>
+                        <td>${request.location}</td>
+                        <td>${request.date}</td>
+                        <td><img src="${request.image}" width="50" height="50" alt="User Image"></td>
+                    `;
+                    requestsBody.appendChild(row);
+                } else {
+                    console.log('Incomplete request data:', request);
+                }
+            });
+        }
+
+        // Function to display donations
+        function displayDonations() {
+            const donations = JSON.parse(localStorage.getItem('donations')) || [];
+            const donationsBody = document.getElementById('donationsBody');
+
+            donationsBody.innerHTML = ''; // Clear previous data
+
+            donations.forEach(donation => {
+                if (donation.name && donation.email && donation.gender && donation.bloodType && donation.location && donation.date && donation.image) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${donation.name}</td>
+                        <td>${donation.email}</td>
+                        <td>${donation.gender}</td>
+                        <td>${donation.bloodType}</td>
+                        <td>${donation.location}</td>
+                        <td>${donation.date}</td>
+                        <td><img src="${donation.image}" width="50" height="50" alt="User Image"></td>
+                    `;
+                    donationsBody.appendChild(row);
+                } else {
+                    console.log('Incomplete donation data:', donation);
+                }
+            });
+        }
+
+        // Call functions to display data
+        displayRequests();
+        displayDonations();
+    </script>
+</body>
+</html>
