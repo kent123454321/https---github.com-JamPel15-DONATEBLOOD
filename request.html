@@ -290,7 +290,7 @@
                 </div>
                 Your picture:
                 <div class="mb-3">
-                    <input type="file" id="requestImage" class="form-control" accept="image" required>
+                    <input type="file" id="requestImage" class="form-control" accept="image/*" required>
                 </div>
                 <div class="button-container">
                     <button type="button" class="btn btn-secondary w-50" id="cancel">CANCEL</button>
@@ -306,22 +306,22 @@
             // Get form values
             const name = document.getElementById('requestName').value;
             const email = document.getElementById('requestEmail').value;
-            const gender = document.getElementById('requestGender').value; // Ensure ID matches
+            const gender = document.getElementById('requestGender').value;
             const bloodType = document.getElementById('requestBloodType').value;
-            const location = document.getElementById('requestLocation').value; // Ensure ID matches
-            const date = document.getElementById('requestDate').value; // Ensure ID matches
+            const location = document.getElementById('requestLocation').value;
+            const date = document.getElementById('requestDate').value;
+            const image = document.getElementById('requestImage').files[0].name;
 
             // Store the data in localStorage
             let requests = JSON.parse(localStorage.getItem('requests')) || [];
             requests.push({
-                type: 'request',
                 name: name,
                 email: email,
                 gender: gender,
                 bloodType: bloodType,
                 location: location,
                 date: date,
-                image: document.getElementById('requestImage').files[0].name
+                image: image
             });
             localStorage.setItem('requests', JSON.stringify(requests));
 

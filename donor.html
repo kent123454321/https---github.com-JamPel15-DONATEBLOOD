@@ -310,6 +310,7 @@
             const bloodType = document.getElementById('donorBloodType').value;
             const location = document.getElementById('donorLocation').value; // Ensure ID matches
             const date = document.getElementById('donorDate').value; // Ensure ID matches
+            const image = document.getElementById('donorImage').files[0].name;
     
             // Store the data in localStorage
             let donations = JSON.parse(localStorage.getItem('donations')) || [];
@@ -321,7 +322,7 @@
                 bloodType: bloodType,
                 location: location,
                 date: date,
-                image: document.getElementById('donorImage').files[0].name
+                image: image
             });
             localStorage.setItem('donations', JSON.stringify(donations));
     
