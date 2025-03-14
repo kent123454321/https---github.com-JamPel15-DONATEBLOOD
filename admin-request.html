@@ -34,6 +34,8 @@
             background-color: rgba(36, 4, 4, 0.712);
             padding: 30px;
             border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
             backdrop-filter: blur(5px);
             box-shadow: 0 0 20px rgb(0, 0, 0);
         }
@@ -86,10 +88,12 @@
         </div>
         <br>
         <h1 style="text-align: center;">Admin Panel</h1>
-        <h6 style="color: #c2bcbc; text-align: center;">Manage Requests</h6>
+        <h6 style="color: #c2bcbc; text-align: center;">Manage Donations</h6>
         <br>
-        <h3>Requests</h3>
-        <table id="requestsTable">
+        
+<br>
+        <h3>Donations</h3>
+        <table id="donationsTable">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -101,39 +105,39 @@
                     <th>Image</th>
                 </tr>
             </thead>
-            <tbody id="requestsBody">
+            <tbody id="donationsBody">
             </tbody>
         </table>
-<br><br>
+    </div>
 
     <script>
-        // Function to display requests
-        function displayRequests() {
-            const requests = JSON.parse(localStorage.getItem('requests')) || [];
-            const requestsBody = document.getElementById('requestsBody');
+        // Function to display donations
+        function displayDonations() {
+            const donations = JSON.parse(localStorage.getItem('donations')) || [];
+            const donationsBody = document.getElementById('donationsBody');
 
-            requestsBody.innerHTML = ''; 
+            donationsBody.innerHTML = '';
 
-            requests.forEach(request => {
-                if (request.name && request.email && request.gender && request.bloodType && request.location && request.date && request.image) {
+            donations.forEach(donation => {
+                if (donation.name && donation.email && donation.gender && donation.bloodType && donation.location && donation.date && donation.image) {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${request.name}</td>
-                        <td>${request.email}</td>
-                        <td>${request.gender}</td>
-                        <td>${request.bloodType}</td>
-                        <td>${request.location}</td>
-                        <td>${request.date}</td>
-                        <td><img src="${request.image}" width="50" height="50" alt="User Image"></td>
+                        <td>${donation.name}</td>
+                        <td>${donation.email}</td>
+                        <td>${donation.gender}</td>
+                        <td>${donation.bloodType}</td>
+                        <td>${donation.location}</td>
+                        <td>${donation.date}</td>
+                        <td><img src="${donation.image}" width="50" height="50" alt="User Image"></td>
                     `;
-                    requestsBody.appendChild(row);
+                    donationsBody.appendChild(row);
                 } else {
-                    console.log('Incomplete request data:', request);
+                    console.log('Incomplete donation data:', donation);
                 }
             });
         }
-        displayRequests();
-        
+
+        displayDonations();
     </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

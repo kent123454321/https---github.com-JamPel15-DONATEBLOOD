@@ -3,136 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <!-- Bootstrap CSS -->
+    <title>Registration Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <style>
         body {
-            background-image: url('patient1.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: rgb(248, 247, 240);
             font-family: sans-serif;
-            color: white;
+            margin: 0;
+            padding: 0;
         }
 
-        @media (max-width: 768px) {
-            body {
-                background-attachment: scroll;
-                background-size: cover;
-            }
-        }
-
-        .container {
+       .container {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            min-height: 85vh;
+            width: 100%;
+            max-width: 1200px;
+            padding:0 20px;
+            margin: 30px auto;
         }
 
         .login-container {
-            background-color: rgba(36, 4, 4, 0.712);
+            background-color: white;
             padding: 30px;
             border-radius: 10px;
             width: 100%;
-            max-width: 400px;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 20px rgb(0, 0, 0);
-        }
-
-        .login-container:hover {
-            box-shadow: 0 0 20px rgb(255, 255, 255);
+            max-width: 800px; /* Increase max-width for a wider form */
+            box-shadow: 0 0 20px rgba(204, 195, 195, 0.986);
         }
 
         .login-container h2 {
             text-align: center;
             margin-bottom: 25px;
-            color: white;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-control {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 5px;
-            color: white; /* White text color */
-            padding: 12px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.616); /* Lighter white for placeholder */
-        }
-
-        .form-control:focus {
-            background-color: rgba(0, 0, 0, 0.541);
-            outline: none;
-            box-shadow: none;
-            color: #ffffff;
-        }
-
-        #donor {
-            background-color: #164ada;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 12px 20px;
-            width: 50%; /* Adjust width as needed */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #donor:hover {
-            background-color: #2cb13d;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .form-check {
-            margin-bottom: 15px;
-        }
-
-        .form-check-label {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .btn-outline-light {
-            color: white;
-            border-color: white;
-        }
-
-        .btn-outline-light:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
+            color: #333;
         }
 
         .image-container {
             width: 70px;
             height: 70px;
-            background: #da1608;
+            background: #a82c23;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            margin: 0 auto;
+            margin-bottom: 35px;
         }
 
         .image-container img {
@@ -142,70 +58,45 @@
             object-fit: cover;
         }
 
-        .home-button {
-            position: absolute;
-            top: 50px;
-            right: 50px;
-            border-color: rgb(0, 0, 0);
-            color: rgb(255, 255, 255);
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-            font-size: 18px;
-            cursor: pointer;
-            text-decoration: none;
-            background-color: #da1626;
-            padding: 5px 10px;
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            z-index: 1;
+            padding: 12px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        .home-button:hover {
-            background-color: #ffae00;
-            color: #ffffff;
-            border-color: rgb(255, 255, 255);
+        .form-control::placeholder {
+            color: #666;
         }
 
-        @media (max-width: 768px) {
-            .home-button {
-                font-size: 16px;
-                padding: 5px 8px;
-            }
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: none;
         }
 
-        .back-button {
-            position: absolute;
-            top: 50px;
-            left: 50px;
-            border-color: rgb(0, 0, 0);
-            color: rgb(255, 255, 255);
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-            font-size: 18px;
-            cursor: pointer;
-            text-decoration: none;
-            background-color: #da1626;
-            padding: 5px 10px;
+        #register {
+            background-color: #164ada;
+            color: white;
+            border: none;
             border-radius: 5px;
-            z-index: 1;
+            padding: 12px 20px;
+            width: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .back-button:hover {
-            background-color: #ffae00;
-            color: #ffffff;
-            border-color: rgb(255, 255, 255);
+        #register:hover {
+            background-color: #1640b6;
         }
 
-        @media (max-width: 768px) {
-            .back-button {
-                font-size: 16px;
-                padding: 5px 8px;
-            }
-        }
-
-        .button-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        #cancel {
+        #clear {
             background-color: grey;
             color: white;
             border: none;
@@ -216,36 +107,99 @@
             transition: background-color 0.3s ease;
         }
 
-        #cancel:hover {
-            background-color: red;
+        #clear:hover {
+            background-color: rgb(109, 103, 103);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .id-upload-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .id-upload {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .id-upload label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .id-upload input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+        }
+
+        /* Style for the square box */
+        .square-box {
+            width: 150px; /* Adjust the width as needed */
+            height: 150px; /* Adjust the height as needed */
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="home-button">Home</a>
-    <a href="beforeyoudonate.html" class="back-button">Back</a>
+    <a href="index.html" class="btn btn-secondary" style="position: absolute; top: 20px; right: 20px;">Home</a>
     <div class="container">
-        <div class="login-container text-">
-            <div class="image-container mx-auto">
+        <div class="login-container">
+            <div class="image-container">
                 <img src="heart.webp" class="img-fluid">
             </div>
-            <br>
-            <h1 style="text-align: center;">Donate Blood</h1>
-            <h6 style="color: #c2bcbc; text-align: center;">It’s quick and easy.</h6>
-            <br>
+            <h2>Register as a Blood Donor</h2>
             <form id="donationForm">
                 <div class="mb-3">
-                    <input type="text" id="donorName" class="form-control" placeholder="Complete name" required>
+                    <input type="text" id="donorName" class="form-control" placeholder="Complete name" required><br>
+                    <div id="nameError" class="error-message"></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="birthdate" class="form-label">Select Birthdate:</label>
+                        <input type="date" id="birthdate" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="donorGender" class="form-label">Select Gender:</label>
+                        <select id="donorGender" class="form-control" required>
+                            <option value="" disabled selected>Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="gay">Gay</option>
+                            <option value="lesbian">Lesbian</option>
+                            <option value="bisexual">Bisexual</option>
+                            <option value="transgender">Transgender</option>
+                            <option value="non-binary">Non-Binary</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <input type="contact" id="donorEmail" class="form-control" placeholder="Mobile number or email" required>
-                </div>
-                <div class="mb-3">
-                    <select id="donorGender" class="form-control" required>
-                        <option value="">Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                    <input type="text" id="donorContact" class="form-control" placeholder="Mobile number or email" required><br>
+                    <div id="contactError" class="error-message"></div>
                 </div>
                 <div class="mb-3">
                     <select id="donorBloodType" class="form-control" required>
@@ -262,7 +216,7 @@
                 </div>
                 <div class="mb-3">
                     <select id="donorLocation" class="form-control" required>
-                        <option value="">Select barangay</option>
+                        <option value="">Select barangay in Nasipit</option>
                         <option value="Aclan">Aclan</option>
                         <option value="Amontay">Amontay</option>
                         <option value="Ata-atahon">Ata-atahon</option>
@@ -285,51 +239,78 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    Date:
-                    <input type="date" id="date" class="form-control" required>
-                </div>
-                Your picture:
-                <div class="mb-3">
-                    <input type="file" id="donorImage" class="form-control" accept="image" required>
+                    <label class="form-label">Valid ID (with birthdate and address):</label>
+                    <div class="id-upload-container">
+                        <div class="id-upload">
+                            <label for="idFront">Front:</label>
+                            <div class="square-box">
+                                Click to upload
+                                <input type="file" id="idFront" class="form-control" accept="image/*" required style="display: none;">
+                            </div>
+                        </div>
+                        <div class="id-upload">
+                            <label for="idBack">Back:</label>
+                            <div class="square-box">
+                                Click to upload
+                                <input type="file" id="idBack" class="form-control" accept="image/*" required style="display: none;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="button-container">
-                    <button type="button" class="btn btn-secondary w-50" id="cancel">CANCEL</button>
-                    <button type="submit" class="btn btn-danger w-50" id="donor">DONATE</button>
+                    <button type="reset" class="btn btn-secondary w-50" id="clear">Clear</button>
+                    <button type="submit" class="btn btn-primary w-50" id="register">Submit</button>
                 </div>
             </form>
         </div>
     </div>
     <script>
-        document.getElementById('donationForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from actually submitting
-    
-            // Get form values
-            const name = document.getElementById('donorName').value;
-            const email = document.getElementById('donorEmail').value;
-            const gender = document.getElementById('donorGender').value; // Ensure ID matches
-            const bloodType = document.getElementById('donorBloodType').value;
-            const location = document.getElementById('donorLocation').value; // Ensure ID matches
-            const date = document.getElementById('donorDate').value; // Ensure ID matches
-            const image = document.getElementById('donorImage').files[0].name;
-    
-            // Store the data in localStorage
-            let donations = JSON.parse(localStorage.getItem('donations')) || [];
-            donations.push({
-                type: 'donation',
-                name: name,
-                email: email,
-                gender: gender,
-                bloodType: bloodType,
-                location: location,
-                date: date,
-                image: image
+        document.addEventListener("DOMContentLoaded", function () {
+            let today = new Date();
+            let minAge = new Date();
+            let maxAge = new Date();
+
+            minAge.setFullYear(today.getFullYear() - 65);
+            maxAge.setFullYear(today.getFullYear() - 18);
+
+            let minDate = minAge.toISOString().split("T")[0];
+            let maxDate = maxAge.toISOString().split("T")[0];
+
+            document.getElementById("birthdate").setAttribute("min", minDate);
+            document.getElementById("birthdate").setAttribute("max", maxDate);
+
+            document.getElementById("donationForm").addEventListener("submit", function (event) {
+                const nameInput = document.getElementById("donorName").value;
+                const nameErrorDiv = document.getElementById("nameError");
+                const contactInput = document.getElementById("donorContact").value;
+                const contactErrorDiv = document.getElementById("contactError");
+                const isValidName = /^[a-zA-Z\s]+$/.test(nameInput);
+                const isValidMobile = /^\+63\d{9}$|09\d{9}$/.test(contactInput);
+                const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactInput);
+
+                if (!isValidName) {
+                    nameErrorDiv.textContent = "Please enter a valid name without numbers.";
+                    event.preventDefault();
+                } else {
+                    nameErrorDiv.textContent = "";
+                }
+
+                if (!isValidMobile && !isValidEmail) {
+                    contactErrorDiv.textContent = "Please enter a valid Philippine mobile number or email address.";
+                    event.preventDefault();
+                } else {
+                    contactErrorDiv.textContent = "";
+                }
             });
-            localStorage.setItem('donations', JSON.stringify(donations));
-    
-            alert('Donation submitted! (Data stored in localStorage)');
-            document.getElementById('donationForm').reset(); // Clear the form
         });
-    </script>    
+
+        document.querySelectorAll('.square-box').forEach(box => {
+            box.addEventListener('click', function () {
+                const input = this.querySelector('input[type="file"]');
+                input.click();
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
