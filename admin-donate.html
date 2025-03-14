@@ -3,142 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <title>Donor Cards</title>
     <style>
         body {
-            background-image: url('patient1.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
-            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        #cardsContainer {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             justify-content: center;
-            font-family: sans-serif;
-            color: white;
+            gap: 20px;
         }
-
-        @media (max-width: 768px) {
-            body {
-                background-attachment: scroll;
-                background-size: cover;
-            }
-        }
-
-        .container {
-            background-color: rgba(36, 4, 4, 0.712);
-            padding: 30px;
+        
+        .card {
+            width: 300px;
+            border: 1px solid #ccc;
             border-radius: 10px;
-            width: 100%;
-            max-width: 800px;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 20px rgb(0, 0, 0);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            text-align: left;
         }
-
-        .container:hover {
-            box-shadow: 0 0 20px rgb(255, 255, 255);
-        }
-
-        table {
+        
+        .card img {
             width: 100%;
-            border-collapse: collapse;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .card img:hover {
+            transform: scale(1.05);
+        }
+        
+        .card h2 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .edit-btn {
+            background-color: #4CAF50;
             color: white;
         }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-            background-color: rgba(255, 255, 255, 0.1);
+        
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
         }
-
-        th {
-            background-color: #f0f0f0;
-            color: black;
-        }
-
-        .image-container {
-            width: 70px;
-            height: 70px;
-            background: #da1608;
-            border-radius: 50%;
-            display: flex;
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
         }
-
-        .image-container img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
+        
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="image-container mx-auto">
-            <img src="heart.webp" class="img-fluid">
-        </div>
-        <br>
-        <h1 style="text-align: center;">Admin Panel</h1>
-        <h6 style="color: #c2bcbc; text-align: center;">Manage Donations</h6>
-        <br>
-        
-<br>
-        <h3>Donations</h3>
-        <table id="donationsTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Gender</th>
-                    <th>Blood Type</th>
-                    <th>Location</th>
-                    <th>Date</th>
-                    <th>Image</th>
-                </tr>
-            </thead>
-            <tbody id="donationsBody">
-            </tbody>
-        </table>
+    <h1>Donor Cards</h1>
+    <div id="cardsContainer"></div>
+    
+    <div id="imageModal" class="modal">
+        <img id="modalImage" src="" alt="Preview">
     </div>
 
     <script>
-        // Function to display donations
-        function displayDonations() {
-            const donations = JSON.parse(localStorage.getItem('donations')) || [];
-            const donationsBody = document.getElementById('donationsBody');
-
-            donationsBody.innerHTML = '';
-
-            donations.forEach(donation => {
-                if (donation.name && donation.email && donation.gender && donation.bloodType && donation.location && donation.date && donation.image) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${donation.name}</td>
-                        <td>${donation.email}</td>
-                        <td>${donation.gender}</td>
-                        <td>${donation.bloodType}</td>
-                        <td>${donation.location}</td>
-                        <td>${donation.date}</td>
-                        <td><img src="${donation.image}" width="50" height="50" alt="User Image"></td>
-                    `;
-                    donationsBody.appendChild(row);
+        document.addEventListener("DOMContentLoaded", function () {
+            function displayDonorCards() {
+                const cardsContainer = document.getElementById('cardsContainer');
+                cardsContainer.innerHTML = '';
+                
+                if (localStorage.getItem('donations')) {
+                    let donations = JSON.parse(localStorage.getItem('donations'));
+                    
+                    donations.forEach((donor, index) => {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+                        
+                        let idFrontImage = donor.idFront ? `<img src="${donor.idFront}" alt="ID Front" onclick="showImageModal('${donor.idFront}')">` : '<p>No ID Front Image</p>';
+                        let idBackImage = donor.idBack ? `<img src="${donor.idBack}" alt="ID Back" onclick="showImageModal('${donor.idBack}')">` : '<p>No ID Back Image</p>';
+                        
+                        card.innerHTML = `
+                            <h2>${donor.name}</h2>
+                            ${idFrontImage}
+                            ${idBackImage}
+                            <p>Birthdate: ${donor.birthdate}</p>
+                            <p>Gender: ${donor.gender}</p>
+                            <p>Contact: ${donor.contact}</p>
+                            <p>Blood Type: ${donor.bloodType}</p>
+                            <p>Location: ${donor.location}</p>
+                            <button class="btn edit-btn" onclick="editDonor(${index})">Edit</button>
+                            <button class="btn delete-btn" onclick="deleteDonor(${index})">Delete</button>
+                        `;
+                        
+                        cardsContainer.appendChild(card);
+                    });
                 } else {
-                    console.log('Incomplete donation data:', donation);
+                    cardsContainer.textContent = 'No Donors Registered';
                 }
-            });
-        }
-
-        displayDonations();
+            }
+            
+            window.showImageModal = function(imageSrc) {
+                const modal = document.getElementById('imageModal');
+                const modalImage = document.getElementById('modalImage');
+                modalImage.src = imageSrc;
+                modal.style.display = "flex";
+                modal.onclick = () => modal.style.display = "none";
+            };
+            
+            window.deleteDonor = function(index) {
+                let donations = JSON.parse(localStorage.getItem('donations'));
+                donations.splice(index, 1);
+                localStorage.setItem('donations', JSON.stringify(donations));
+                displayDonorCards();
+            };
+            
+            window.editDonor = function(index) {
+                alert("Editing feature not implemented yet!");
+            };
+            
+            displayDonorCards();
+        });
     </script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>

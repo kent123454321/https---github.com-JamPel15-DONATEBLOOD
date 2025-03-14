@@ -143,18 +143,36 @@
             background-color: #f2f2f2;
         }
 
-        /* Style for the square box */
         .square-box {
-            width: 150px; /* Adjust the width as needed */
-            height: 150px; /* Adjust the height as needed */
-            border: 2px dashed #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
+        width: 150px;
+        height: 150px;
+        border: 2px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .square-box img {
+        max-width: 100%;
+        max-height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        display: none;
+    }
+
+    .square-box span {
+        color: #888;
+        font-size: 14px;
+        position: absolute;
+    }
 
         .error-message {
             color: red;
@@ -243,15 +261,17 @@
                     <div class="id-upload-container">
                         <div class="id-upload">
                             <label for="idFront">Front:</label>
-                            <div class="square-box">
+                            <div class="square-box" id="idFrontBox">
                                 Click to upload
+                                <img id="idFrontPreview" src="" alt="ID Front Preview" style="display:none;">
                                 <input type="file" id="idFront" class="form-control" accept="image/*" required style="display: none;">
                             </div>
                         </div>
                         <div class="id-upload">
                             <label for="idBack">Back:</label>
-                            <div class="square-box">
+                            <div class="square-box"  id="idBackBox">
                                 Click to upload
+                                 <img id="idBackPreview" src="" alt="ID Back Preview" style="display:none;">
                                 <input type="file" id="idBack" class="form-control" accept="image/*" required style="display: none;">
                             </div>
                         </div>
@@ -263,6 +283,9 @@
                 </div>
             </form>
         </div>
+    </div>
+    <div id="notification" style="display:none; position: fixed; top: 20px; right: 20px; background-color: #4CAF50; color: white; padding: 15px; border-radius: 5px;">
+        Registration submitted successfully!
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -279,7 +302,46 @@
             document.getElementById("birthdate").setAttribute("min", minDate);
             document.getElementById("birthdate").setAttribute("max", maxDate);
 
-            document.getElementById("donationForm").addEventListener("submit", function (event) {
+            // Function to display image preview
+            function displayImagePreview(input, previewElement, boxElement) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        previewElement.src = e.target.result;
+                        previewElement.style.display = 'block';
+                        boxElement.querySelector('div').style.display = 'none';  // Hide the "Click to upload" text
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                      previewElement.src = '';
+                      previewElement.style.display = 'none';
+                      boxElement.querySelector('div').style.display = 'flex';  // Show the "Click to upload" text
+                      boxElement.querySelector('div').style.alignItems = 'center';
+                      boxElement.querySelector('div').style.justifyContent = 'center';
+                }
+            }
+
+            // Image preview for ID Front
+            const idFrontInput = document.getElementById('idFront');
+            const idFrontPreview = document.getElementById('idFrontPreview');
+            const idFrontBox = document.getElementById('idFrontBox');
+            idFrontInput.addEventListener('change', function() {
+                displayImagePreview(this, idFrontPreview, idFrontBox);
+            });
+
+            // Image preview for ID Back
+            const idBackInput = document.getElementById('idBack');
+            const idBackPreview = document.getElementById('idBackPreview');
+            const idBackBox = document.getElementById('idBackBox');
+            idBackInput.addEventListener('change', function() {
+                displayImagePreview(this, idBackPreview, idBackBox);
+            });
+
+             document.getElementById("donationForm").addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent default form submission
+
                 const nameInput = document.getElementById("donorName").value;
                 const nameErrorDiv = document.getElementById("nameError");
                 const contactInput = document.getElementById("donorContact").value;
@@ -290,24 +352,81 @@
 
                 if (!isValidName) {
                     nameErrorDiv.textContent = "Please enter a valid name without numbers.";
-                    event.preventDefault();
+                    return;
                 } else {
                     nameErrorDiv.textContent = "";
                 }
 
                 if (!isValidMobile && !isValidEmail) {
                     contactErrorDiv.textContent = "Please enter a valid Philippine mobile number or email address.";
-                    event.preventDefault();
+                    return;
                 } else {
                     contactErrorDiv.textContent = "";
                 }
-            });
-        });
 
-        document.querySelectorAll('.square-box').forEach(box => {
-            box.addEventListener('click', function () {
-                const input = this.querySelector('input[type="file"]');
-                input.click();
+                if (isValidName && (isValidMobile || isValidEmail)) {
+                    // Prepare form data
+                    const formData = new FormData();
+                    formData.append('name', nameInput);
+                    formData.append('birthdate', document.getElementById("birthdate").value);
+                    formData.append('gender', document.getElementById("donorGender").value);
+                    formData.append('contact', contactInput);
+                    formData.append('bloodType', document.getElementById("donorBloodType").value);
+                    formData.append('location', document.getElementById("donorLocation").value);
+
+                    // Append the files
+                    const idFront = document.getElementById('idFront').files[0];
+                    const idBack = document.getElementById('idBack').files[0];
+                    formData.append('idFront', idFront);
+                    formData.append('idBack', idBack);
+
+                    // Send data to backend
+                    fetch('/api/register', { // Replace with your backend endpoint
+                        method: 'POST',
+                        body: formData,
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Show notification
+                            document.getElementById('notification').style.display = 'block';
+                            // Clear form
+                            document.getElementById("donationForm").reset();
+
+                            // Store form data in localStorage BEFORE redirecting
+                            const donorData = {
+                                name: nameInput,
+                                birthdate: document.getElementById("birthdate").value,
+                                gender: document.getElementById("donorGender").value,
+                                contact: contactInput,
+                                bloodType: document.getElementById("donorBloodType").value,
+                                location: document.getElementById("donorLocation").value,
+                                idFront: idFront ? URL.createObjectURL(idFront) : null,
+                                idBack: idBack ? URL.createObjectURL(idBack) : null
+                            };
+                             let donations = JSON.parse(localStorage.getItem('donations')) || [];
+                            donations.push(donorData);
+                            localStorage.setItem('donations', JSON.stringify(donations));
+
+                            // Optionally, redirect to card page after a delay
+                            setTimeout(() => {
+                                window.location.href = 'card.html';
+                            }, 2000); // Redirect after 2 seconds
+                        } else {
+                            throw new Error('Registration failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Registration failed. Please try again.');
+                    });
+                }
+            });
+
+            document.querySelectorAll('.square-box').forEach(box => {
+                box.addEventListener('click', function () {
+                    const input = this.querySelector('input[type="file"]');
+                    input.click();
+                });
             });
         });
     </script>
