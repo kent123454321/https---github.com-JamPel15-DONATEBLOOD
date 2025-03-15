@@ -180,10 +180,20 @@
             margin-top: -10px;
             margin-bottom: 10px;
         }
+        .nav-buttons {
+            top: 20px;
+            right: 20px;
+            gap: 10px;
+            margin-bottom: 30px;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
-    <a href="index.html" class="btn btn-secondary" style="position: absolute; top: 20px; right: 20px;">Home</a>
+    <div class="nav-buttons">
+        <a href="beforeyoudonate.html" class="btn btn-danger m-2">Back</a>
+        <a href="index.html" class="btn btn-primary m-3">Home</a>
+    </div>
     <div class="container">
         <div class="login-container">
             <div class="image-container">
@@ -302,7 +312,6 @@
             document.getElementById("birthdate").setAttribute("min", minDate);
             document.getElementById("birthdate").setAttribute("max", maxDate);
 
-            // Function to display image preview
             function displayImagePreview(input, previewElement, boxElement) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -310,20 +319,19 @@
                     reader.onload = function (e) {
                         previewElement.src = e.target.result;
                         previewElement.style.display = 'block';
-                        boxElement.querySelector('div').style.display = 'none';  // Hide the "Click to upload" text
+                        boxElement.querySelector('span').style.display = 'none';
                     }
 
                     reader.readAsDataURL(input.files[0]);
                 } else {
                       previewElement.src = '';
                       previewElement.style.display = 'none';
-                      boxElement.querySelector('div').style.display = 'flex';  // Show the "Click to upload" text
-                      boxElement.querySelector('div').style.alignItems = 'center';
-                      boxElement.querySelector('div').style.justifyContent = 'center';
+                      boxElement.querySelector('span').style.display = 'flex';
+                      boxElement.querySelector('span').style.alignItems = 'center';
+                      boxElement.querySelector('span').style.justifyContent = 'center';
                 }
             }
 
-            // Image preview for ID Front
             const idFrontInput = document.getElementById('idFront');
             const idFrontPreview = document.getElementById('idFrontPreview');
             const idFrontBox = document.getElementById('idFrontBox');
@@ -331,7 +339,6 @@
                 displayImagePreview(this, idFrontPreview, idFrontBox);
             });
 
-            // Image preview for ID Back
             const idBackInput = document.getElementById('idBack');
             const idBackPreview = document.getElementById('idBackPreview');
             const idBackBox = document.getElementById('idBackBox');
@@ -339,8 +346,8 @@
                 displayImagePreview(this, idBackPreview, idBackBox);
             });
 
-             document.getElementById("donationForm").addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent default form submission
+            document.getElementById("donationForm").addEventListener("submit", function (event) {
+                event.preventDefault();
 
                 const nameInput = document.getElementById("donorName").value;
                 const nameErrorDiv = document.getElementById("nameError");
@@ -365,62 +372,51 @@
                 }
 
                 if (isValidName && (isValidMobile || isValidEmail)) {
-                    // Prepare form data
-                    const formData = new FormData();
-                    formData.append('name', nameInput);
-                    formData.append('birthdate', document.getElementById("birthdate").value);
-                    formData.append('gender', document.getElementById("donorGender").value);
-                    formData.append('contact', contactInput);
-                    formData.append('bloodType', document.getElementById("donorBloodType").value);
-                    formData.append('location', document.getElementById("donorLocation").value);
+                    const idFrontFile = document.getElementById('idFront').files[0];
+                    const idBackFile = document.getElementById('idBack').files[0];
 
-                    // Append the files
-                    const idFront = document.getElementById('idFront').files[0];
-                    const idBack = document.getElementById('idBack').files[0];
-                    formData.append('idFront', idFront);
-                    formData.append('idBack', idBack);
+                    // Convert images to Data URLs
+                    Promise.all([
+                        idFrontFile ? readFileAsDataURL(idFrontFile) : Promise.resolve(null),
+                        idBackFile ? readFileAsDataURL(idBackFile) : Promise.resolve(null)
+                    ]).then(([idFrontDataURL, idBackDataURL]) => {
+                        const donorData = {
+                            name: nameInput,
+                            birthdate: document.getElementById("birthdate").value,
+                            gender: document.getElementById("donorGender").value,
+                            contact: contactInput,
+                            bloodType: document.getElementById("donorBloodType").value,
+                            location: document.getElementById("donorLocation").value,
+                            idFront: idFrontDataURL,
+                            idBack: idBackDataURL,
+                            checked: false // Default checkbox state
+                        };
 
-                    // Send data to backend
-                    fetch('/api/register', { // Replace with your backend endpoint
-                        method: 'POST',
-                        body: formData,
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            // Show notification
-                            document.getElementById('notification').style.display = 'block';
-                            // Clear form
-                            document.getElementById("donationForm").reset();
+                        // Save to localStorage
+                        let donations = JSON.parse(localStorage.getItem('donations')) || [];
+                        donations.push(donorData);
+                        localStorage.setItem('donations', JSON.stringify(donations));
 
-                            // Store form data in localStorage BEFORE redirecting
-                            const donorData = {
-                                name: nameInput,
-                                birthdate: document.getElementById("birthdate").value,
-                                gender: document.getElementById("donorGender").value,
-                                contact: contactInput,
-                                bloodType: document.getElementById("donorBloodType").value,
-                                location: document.getElementById("donorLocation").value,
-                                idFront: idFront ? URL.createObjectURL(idFront) : null,
-                                idBack: idBack ? URL.createObjectURL(idBack) : null
-                            };
-                             let donations = JSON.parse(localStorage.getItem('donations')) || [];
-                            donations.push(donorData);
-                            localStorage.setItem('donations', JSON.stringify(donations));
+                        // Show notification and reset form
+                        document.getElementById('notification').style.display = 'block';
+                        document.getElementById("donationForm").reset();
 
-                            // Optionally, redirect to card page after a delay
-                            setTimeout(() => {
-                                window.location.href = 'card.html';
-                            }, 2000); // Redirect after 2 seconds
-                        } else {
-                            throw new Error('Registration failed');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Registration failed. Please try again.');
+                        setTimeout(() => {
+                            document.getElementById('notification').style.display = 'none';
+                        }, 2000);
                     });
                 }
             });
+
+            // Helper function to convert file to Data URL
+            function readFileAsDataURL(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = () => reject(reader.error);
+                    reader.readAsDataURL(file);
+                });
+            }
 
             document.querySelectorAll('.square-box').forEach(box => {
                 box.addEventListener('click', function () {

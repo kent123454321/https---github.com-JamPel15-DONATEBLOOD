@@ -3,142 +3,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <!-- Bootstrap CSS -->
+    <title>Admin - Request Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <style>
-        body {
-            background-image: url('patient1.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
+         /* Animated Gradient Background */
+         body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
             margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: sans-serif;
-            color: white;
+            background: linear-gradient(270deg, #a0e0e9, #e0b4f5, #8fe5a9);
+            background-size: 400% 400%;
+            animation: GradientBackground 10s ease infinite;
+            
         }
 
-        @media (max-width: 768px) {
-            body {
-                background-attachment: scroll;
-                background-size: cover;
+        @keyframes GradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
             }
         }
 
-        .container {
-            background-color: rgba(36, 4, 4, 0.712);
-            padding: 30px;
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        #cardsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            width: 100%;
-            max-width: 800px;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 20px rgb(0, 0, 0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px; /* Reduced width */
+            padding: 10px; /* Reduced padding */
+            text-align: left;
         }
 
-        .container:hover {
-            box-shadow: 0 0 20px rgb(255, 255, 255);
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .card img:hover {
+            transform: scale(1.05);
+        }
+
+        .card h2 {
+            font-size: 1.2em; /* Slightly smaller font size */
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card p {
+            margin: 5px 0;
+            font-size: 0.7em; /* Slightly smaller font size */
+            color: #555;
+        }
+
+        .checkbox-container {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-container label {
+            margin-left: 10px;
+            font-size: 0.7em; /* Slightly smaller font size */
+            color: #555;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 8px 12px; /* Slightly smaller buttons */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em; /* Slightly smaller font size */
+            flex: 1;
+        }
+        .save-btn {
+            background-color: #28a745;
             color: white;
         }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-            background-color: rgba(255, 255, 255, 0.1);
+        .cancel-btn {
+            background-color: #dc3545;
+            color: white;
         }
 
-        th {
-            background-color: #f0f0f0;
+        .edit-btn {
+            background-color: #ffc107;
             color: black;
         }
 
-        .image-container {
-            width: 70px;
-            height: 70px;
-            background: #da1608;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
         }
 
-        .image-container img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
+        .checkbox-container {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-container label {
+            margin-left: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .edit-form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .edit-form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .edit-form-container input,
+        .edit-form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .edit-form-container .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        /* Navigation buttons */
+        .nav-buttons {
+            top: 20px;
+            right: 20px;
+            gap: 10px;
+            margin-bottom: 30px;
+            text-align: right;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="image-container mx-auto">
-            <img src="heart.webp" class="img-fluid">
+    <div class="nav-buttons">
+        <a href="index.html" class="btn btn-danger">Log out</a>
+        <a href="admin-donate.html" class="btn btn-primary">Go to Donors</a>
+    </div>
+
+    <h1>Request Management</h1>
+    <div id="cardsContainer"></div>
+
+    <!-- Modal for image preview -->
+    <div id="imageModal" class="modal">
+        <img id="modalImage" src="" alt="Preview">
+    </div>
+
+    <!-- Edit Form Modal -->
+    <div id="editFormModal" class="modal">
+        <div class="edit-form-container">
+            <h2>Edit Request</h2>
+            <form id="editRequestForm">
+                <input type="text" id="editName" placeholder="Complete name" required>
+                <input type="date" id="editBirthdate" required>
+                <select id="editGender" required>
+                    <option value="" disabled selected>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="gay">Gay</option>
+                    <option value="lesbian">Lesbian</option>
+                    <option value="bisexual">Bisexual</option>
+                    <option value="transgender">Transgender</option>
+                    <option value="non-binary">Non-Binary</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+                <input type="text" id="editContact" placeholder="Mobile number or email" required>
+                <select id="editBloodType" required>
+                    <option value="">Blood type needed</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+                <select id="editLocation" required>
+                    <option value="">Select barangay in Nasipit</option>
+                    <option value="Aclan">Aclan</option>
+                    <option value="Amontay">Amontay</option>
+                    <option value="Ata-atahon">Ata-atahon</option>
+                    <option value="Barangay 1 (Poblacion)">Barangay 1 (Poblacion)</option>
+                    <option value="Barangay 2 (Poblacion)">Barangay 2 (Poblacion)</option>
+                    <option value="Barangay 3 (Poblacion)">Barangay 3 (Poblacion)</option>
+                    <option value="Barangay 4 (Poblacion)">Barangay 4 (Poblacion)</option>
+                    <option value="Barangay 5 (Poblacion)">Barangay 5 (Poblacion)</option>
+                    <option value="Barangay 6 (Poblacion)">Barangay 6 (Poblacion)</option>
+                    <option value="Barangay 7 (Poblacion)">Barangay 7 (Poblacion)</option>
+                    <option value="Camagong">Camagong</option>
+                    <option value="Cubi-Cubi">Cubi-Cubi</option>
+                    <option value="Culit">Culit</option>
+                    <option value="Jaguimitan">Jaguimitan</option>
+                    <option value="Kinabjangan">Kinabjangan</option>
+                    <option value="Punta">Punta</option>
+                    <option value="Santa Ana">Santa Ana</option>
+                    <option value="Talisay">Talisay</option>
+                    <option value="Triangulo">Triangulo</option>
+                </select>
+                <div class="button-container">
+                    <button type="button" class="btn save-btn" onclick="saveEditedRequest()">Save</button>
+                    <button type="button" class="btn cancel-btn" onclick="closeEditForm()">Cancel</button>
+                </div>
+            </form>
         </div>
-        <br>
-        <h1 style="text-align: center;">Admin Panel</h1>
-        <h6 style="color: #c2bcbc; text-align: center;">Manage Donations</h6>
-        <br>
-        
-<br>
-        <h3>Donations</h3>
-        <table id="donationsTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Gender</th>
-                    <th>Blood Type</th>
-                    <th>Location</th>
-                    <th>Date</th>
-                    <th>Image</th>
-                </tr>
-            </thead>
-            <tbody id="donationsBody">
-            </tbody>
-        </table>
     </div>
 
     <script>
-        // Function to display donations
-        function displayDonations() {
-            const donations = JSON.parse(localStorage.getItem('donations')) || [];
-            const donationsBody = document.getElementById('donationsBody');
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch request data from localStorage
+            let requests = JSON.parse(localStorage.getItem('requests')) || [];
+            const cardsContainer = document.getElementById('cardsContainer');
 
-            donationsBody.innerHTML = '';
+            // Function to display request cards
+            function displayRequestCards() {
+                cardsContainer.innerHTML = ''; // Clear existing cards
 
-            donations.forEach(donation => {
-                if (donation.name && donation.email && donation.gender && donation.bloodType && donation.location && donation.date && donation.image) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${donation.name}</td>
-                        <td>${donation.email}</td>
-                        <td>${donation.gender}</td>
-                        <td>${donation.bloodType}</td>
-                        <td>${donation.location}</td>
-                        <td>${donation.date}</td>
-                        <td><img src="${donation.image}" width="50" height="50" alt="User Image"></td>
-                    `;
-                    donationsBody.appendChild(row);
-                } else {
-                    console.log('Incomplete donation data:', donation);
+                if (requests.length === 0) {
+                    cardsContainer.innerHTML = '<p>No requests registered yet.</p>';
+                    return;
                 }
-            });
-        }
 
-        displayDonations();
+                requests.forEach((request, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+
+                    // Display ID images with labels
+                    const idFrontImage = request.idFront ? `
+                        <p><strong>Front ID:</strong></p>
+                        <img src="${request.idFront}" alt="ID Front" onclick="showImageModal('${request.idFront}')">
+                    ` : '<p>No Front ID Image</p>';
+
+                    const idBackImage = request.idBack ? `
+                        <p><strong>Back ID:</strong></p>
+                        <img src="${request.idBack}" alt="ID Back" onclick="showImageModal('${request.idBack}')">
+                    ` : '<p>No Back ID Image</p>';
+
+                    card.innerHTML = `
+                        <h2>${request.name}</h2>
+                        ${idFrontImage}
+                        ${idBackImage}
+                        <p><strong>Birthdate:</strong> ${request.birthdate}</p>
+                        <p><strong>Gender:</strong> ${request.gender}</p>
+                        <p><strong>Contact:</strong> ${request.contact}</p>
+                        <p><strong>Blood type needed:</strong> ${request.bloodType}</p>
+                        <p><strong>Location:</strong> ${request.location}</p>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkDone${index}" ${request.checked ? 'checked' : ''} onchange="toggleCheckbox(${index})">
+                            <label for="checkDone${index}">Mark as Done</label>
+                        </div>
+                        <div class="button-container">
+                            <button class="btn edit-btn" onclick="openEditForm(${index})">Edit</button>
+                            <button class="btn delete-btn" onclick="deleteRequest(${index})">Delete</button>
+                        </div>
+                    `;
+
+                    cardsContainer.appendChild(card);
+                });
+            }
+
+            // Function to show image in modal
+            window.showImageModal = function (imageSrc) {
+                const modal = document.getElementById('imageModal');
+                const modalImage = document.getElementById('modalImage');
+                modalImage.src = imageSrc;
+                modal.style.display = 'flex';
+                modal.onclick = () => modal.style.display = 'none';
+            };
+
+            // Function to toggle the checkbox state
+            window.toggleCheckbox = function (index) {
+                requests[index].checked = !requests[index].checked;
+                localStorage.setItem('requests', JSON.stringify(requests));
+            };
+
+            // Function to delete a request
+            window.deleteRequest = function (index) {
+                if (confirm('Are you sure you want to delete this request?')) {
+                    requests.splice(index, 1); // Remove request from array
+                    localStorage.setItem('requests', JSON.stringify(requests)); // Update localStorage
+                    displayRequestCards(); // Refresh the display
+                }
+            };
+
+            // Function to open the edit form
+            window.openEditForm = function (index) {
+                const request = requests[index];
+                document.getElementById('editName').value = request.name;
+                document.getElementById('editBirthdate').value = request.birthdate;
+                document.getElementById('editGender').value = request.gender;
+                document.getElementById('editContact').value = request.contact;
+                document.getElementById('editBloodType').value = request.bloodType;
+                document.getElementById('editLocation').value = request.location;
+                document.getElementById('editFormModal').style.display = 'flex';
+                document.getElementById('editFormModal').dataset.index = index;
+            };
+
+            // Function to save edited request details
+            window.saveEditedRequest = function () {
+                const index = document.getElementById('editFormModal').dataset.index;
+                requests[index] = {
+                    name: document.getElementById('editName').value,
+                    birthdate: document.getElementById('editBirthdate').value,
+                    gender: document.getElementById('editGender').value,
+                    contact: document.getElementById('editContact').value,
+                    bloodType: document.getElementById('editBloodType').value,
+                    location: document.getElementById('editLocation').value,
+                    idFront: requests[index].idFront,
+                    idBack: requests[index].idBack,
+                    checked: requests[index].checked || false // Preserve the checkbox state
+                };
+                localStorage.setItem('requests', JSON.stringify(requests));
+                closeEditForm();
+                displayRequestCards();
+            };
+
+            // Function to close the edit form
+            window.closeEditForm = function () {
+                document.getElementById('editFormModal').style.display = 'none';
+            };
+
+            // Initial display of request cards
+            displayRequestCards();
+        });
     </script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
