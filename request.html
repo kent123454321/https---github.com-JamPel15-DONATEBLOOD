@@ -13,7 +13,7 @@
             padding: 0;
         }
 
-       .container {
+        .container {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -29,8 +29,20 @@
             padding: 30px;
             border-radius: 10px;
             width: 100%;
-            max-width: 800px; /* Increase max-width for a wider form */
+            max-width: 800px;
             box-shadow: 0 0 20px rgba(204, 195, 195, 0.986);
+            animation: fadeIn 1s ease-in-out; 
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .login-container h2 {
@@ -69,6 +81,7 @@
             padding: 12px;
             width: 100%;
             box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; 
         }
 
         .form-control::placeholder {
@@ -124,7 +137,7 @@
         }
 
         .id-upload {
-            flex: 1 1 45%; /* Flex-grow, flex-shrink, flex-basis */
+            flex: 1 1 45%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -178,14 +191,13 @@
             text-align: right;
         }
 
-        /* Media Queries for Mobile Devices */
         @media (max-width: 768px) {
             .id-upload {
-                flex: 1 1 100%; /* Full width on smaller screens */
+                flex: 1 1 100%; 
             }
 
             .square-box {
-                height: 120px; /* Smaller height for mobile */
+                height: 120px; 
             }
         }
     </style>
@@ -201,19 +213,19 @@
                 <img src="heart.webp" class="img-fluid">
             </div>
             <h2>Register a Blood Request</h2>
-            <form id="requestForm">
+            <form id="requestForm" action="add_request.php" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <input type="text" id="requesterName" class="form-control" placeholder="Patient name" required><br>
+                    <input type="text" id="requesterName" name="name" class="form-control" placeholder="Patient name" required><br>
                     <div id="nameError" class="error-message"></div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="birthdate" class="form-label">Select Birthdate:</label>
-                        <input type="date" id="birthdate" class="form-control" required>
+                        <input type="date" id="birthdate" name="birthdate" class="form-control" required>
                     </div>
                     <div class="col-md-6">
                         <label for="requesterGender" class="form-label">Select Gender:</label>
-                        <select id="requesterGender" class="form-control" required>
+                        <select id="requesterGender" name="gender" class="form-control" required>
                             <option value="" disabled selected>Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -227,11 +239,11 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <input type="text" id="requesterContact" class="form-control" placeholder="Mobile number or email" required><br>
+                    <input type="text" id="requesterContact" name="contact" class="form-control" placeholder="Mobile number or email" required><br>
                     <div id="contactError" class="error-message"></div>
                 </div>
                 <div class="mb-3">
-                    <select id="requesterBloodType" class="form-control" required>
+                    <select id="requesterBloodType" name="blood_type" class="form-control" required>
                         <option value="">Blood type needed</option>
                         <option value="A+">A+</option>
                         <option value="A-">A-</option>
@@ -244,7 +256,7 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <select id="requesterLocation" class="form-control" required>
+                    <select id="requesterLocation" name="location" class="form-control" required>
                         <option value="">Select barangay in Nasipit</option>
                         <option value="Aclan">Aclan</option>
                         <option value="Amontay">Amontay</option>
@@ -275,15 +287,15 @@
                             <div class="square-box" id="idFrontBox">
                                 Click to upload
                                 <img id="idFrontPreview" src="" alt="ID Front Preview" style="display:none;">
-                                <input type="file" id="idFront" class="form-control" accept="image/*" required style="display: none;">
+                                <input type="file" id="idFront" name="id_front" class="form-control" accept="image/*" required style="display: none;">
                             </div>
                         </div>
                         <div class="id-upload">
                             <label for="idBack">Back:</label>
-                            <div class="square-box"  id="idBackBox">
+                            <div class="square-box" id="idBackBox">
                                 Click to upload
-                                 <img id="idBackPreview" src="" alt="ID Back Preview" style="display:none;">
-                                <input type="file" id="idBack" class="form-control" accept="image/*" required style="display: none;">
+                                <img id="idBackPreview" src="" alt="ID Back Preview" style="display:none;">
+                                <input type="file" id="idBack" name="id_back" class="form-control" accept="image/*" required style="display: none;">
                             </div>
                         </div>
                     </div>

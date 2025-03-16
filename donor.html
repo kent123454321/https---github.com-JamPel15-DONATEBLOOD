@@ -29,8 +29,20 @@
             padding: 30px;
             border-radius: 10px;
             width: 100%;
-            max-width: 800px; /* Increase max-width for a wider form */
+            max-width: 800px; 
             box-shadow: 0 0 20px rgba(204, 195, 195, 0.986);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .login-container h2 {
@@ -69,6 +81,7 @@
             padding: 12px;
             width: 100%;
             box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; 
         }
 
         .form-control::placeholder {
@@ -178,17 +191,17 @@
             text-align: right;
         }
 
-        /* Media Queries for Mobile Devices */
         @media (max-width: 768px) {
             .id-upload {
-                flex: 1 1 100%; /* Full width on smaller screens */
+                flex: 1 1 100%; 
             }
 
             .square-box {
-                height: 120px; /* Smaller height for mobile */
+                height: 120px; 
             }
         }
     </style>
+</head>
 </head>
 <body>
     <div class="nav-buttons">
@@ -201,19 +214,19 @@
                 <img src="heart.webp" class="img-fluid">
             </div>
             <h2>Register as a Blood Donor</h2>
-            <form id="donationForm">
+            <form id="donationForm" action="add_donor.php" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <input type="text" id="donorName" class="form-control" placeholder="Complete name" required><br>
+                    <input type="text" id="donorName" name="name" class="form-control" placeholder="Complete name" required><br>
                     <div id="nameError" class="error-message"></div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="birthdate" class="form-label">Select Birthdate:</label>
-                        <input type="date" id="birthdate" class="form-control" required>
+                        <input type="date" id="birthdate" name="birthdate" class="form-control" required>
                     </div>
                     <div class="col-md-6">
                         <label for="donorGender" class="form-label">Select Gender:</label>
-                        <select id="donorGender" class="form-control" required>
+                        <select id="donorGender" name="gender" class="form-control" required>
                             <option value="" disabled selected>Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -227,11 +240,11 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <input type="text" id="donorContact" class="form-control" placeholder="Mobile number or email" required><br>
+                    <input type="text" id="donorContact" name="contact" class="form-control" placeholder="Mobile number or email" required><br>
                     <div id="contactError" class="error-message"></div>
                 </div>
                 <div class="mb-3">
-                    <select id="donorBloodType" class="form-control" required>
+                    <select id="donorBloodType" name="blood_type" class="form-control" required>
                         <option value="">Your blood type</option>
                         <option value="A+">A+</option>
                         <option value="A-">A-</option>
@@ -244,7 +257,7 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <select id="donorLocation" class="form-control" required>
+                    <select id="donorLocation" name="location" class="form-control" required>
                         <option value="">Select barangay in Nasipit</option>
                         <option value="Aclan">Aclan</option>
                         <option value="Amontay">Amontay</option>
@@ -275,7 +288,7 @@
                             <div class="square-box" id="idFrontBox">
                                 Click to upload
                                 <img id="idFrontPreview" src="" alt="ID Front Preview" style="display:none;">
-                                <input type="file" id="idFront" class="form-control" accept="image/*" required style="display: none;">
+                                <input type="file" id="idFront" name="id_front" class="form-control" accept="image/*" required style="display: none;">
                             </div>
                         </div>
                         <div class="id-upload">
@@ -283,7 +296,7 @@
                             <div class="square-box"  id="idBackBox">
                                 Click to upload
                                  <img id="idBackPreview" src="" alt="ID Back Preview" style="display:none;">
-                                <input type="file" id="idBack" class="form-control" accept="image/*" required style="display: none;">
+                                <input type="file" id="idBack" name="id_back" class="form-control" accept="image/*" required style="display: none;">
                             </div>
                         </div>
                     </div>
@@ -390,7 +403,7 @@
                             location: document.getElementById("donorLocation").value,
                             idFront: idFrontDataURL,
                             idBack: idBackDataURL,
-                            checked: false // Default checkbox state
+                            checked: false 
                         };
 
                         // Save to localStorage
