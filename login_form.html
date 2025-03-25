@@ -42,27 +42,45 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
             color: var(--text-color);
             transition: background-color 0.5s ease, color 0.5s ease;
+            padding: 20px;
         }
 
         .container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
             width: 100%;
             max-width: 900px;
             padding: 20px;
         }
 
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
         .blood-donation-text {
             flex: 1;
-            padding-right: 40px;
+            padding-right: 0;
+            padding-bottom: 40px;
             color: var(--text-color);
             animation: slideInFromTop 1s ease-in-out;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .blood-donation-text {
+                padding-right: 40px;
+                padding-bottom: 0;
+                text-align: left;
+            }
         }
 
         @keyframes slideInFromTop {
@@ -78,14 +96,26 @@
 
         .blood-donation-text h1 {
             color: var(--primary-color);
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 10px;
             transition: color 0.5s ease;
         }
 
+        @media (min-width: 768px) {
+            .blood-donation-text h1 {
+                font-size: 2.5rem;
+            }
+        }
+
         .blood-donation-text p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
+        }
+
+        @media (min-width: 768px) {
+            .blood-donation-text p {
+                font-size: 1.1rem;
+            }
         }
 
         /* Modified Uiverse.io form style with blood theme */
@@ -94,7 +124,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            padding: 30px;
+            padding: 25px;
             background: var(--form-bg);
             border-radius: 10px;
             overflow: hidden;
@@ -106,6 +136,7 @@
             animation: form-animation 0.5s ease-in-out;
             width: 100%;
             max-width: 400px;
+            margin: 0 auto;
             transition: background 0.5s ease;
         }
 
@@ -126,6 +157,7 @@
             font-family: 'Gill Sans', 'Gill Sans MT';
             text-align: center;
             transform-style: preserve-3d;
+            font-size: 1.5rem;
         }
 
         .form-group {
@@ -139,11 +171,12 @@
             color: white;
             font-weight: bold;
             transform-style: preserve-3d;
+            font-size: 0.9rem;
         }
 
         .input {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border-radius: 5px;
             background-color: var(--input-bg);
             transition: all 0.3s ease-in-out;
@@ -152,6 +185,14 @@
             color: var(--input-color);
             border: 2px solid var(--input-border);
             box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 768px) {
+            .input {
+                padding: 12px;
+                font-size: 1rem;
+            }
         }
 
         .input::placeholder {
@@ -168,57 +209,69 @@
         }
 
         .btn-login {
-            padding: 12px;
+            width: 100%;
+            padding: 10px;
             border: none;
             border-radius: 5px;
             background-color: var(--btn-bg);
             color: var(--btn-color);
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-            transform: rotateX(-10deg);
-            transition: all 0.3s ease-in-out;
-            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+            transition: all 0.3s ease;
             margin-top: 10px;
-            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         .btn-login:hover {
             background-color: var(--btn-hover-bg);
-            transform: scale(1.05) rotateY(10deg) rotateX(5deg);
-            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+            transform: scale(1.05);
         }
 
         .password-toggle {
             position: absolute;
-            right: 12px;
-            top: 38px;
+            right: 10px;
+            top: 35px;
             background: none;
             border: none;
             cursor: pointer;
             color: white;
             transform-style: preserve-3d;
             transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
         .password-toggle:hover {
             transform: scale(1.1) rotateY(10deg);
         }
 
-        /* Torch toggle button styles */
+        /* Responsive Torch toggle button styles */
         .theme-toggle-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            position: fixed;
+            top: 15px;
+            right: 15px;
             z-index: 100;
+        }
+
+        @media (min-width: 768px) {
+            .theme-toggle-container {
+                top: 20px;
+                right: 20px;
+            }
         }
 
         .theme-toggle {
             position: relative;
             cursor: pointer;
             user-select: none;
+            width: 60px;
+            height: 60px;
+        }
+
+        @media (min-width: 768px) {
+            .theme-toggle {
+                width: auto;
+                height: auto;
+            }
         }
 
         .theme-toggle input {
@@ -230,57 +283,111 @@
         }
 
         .simple-text {
-            position: absolute;
-            bottom: -40px;
-            width: 120px;
-            text-align: center;
-            color: var(--text-color);
-            font-size: 16pt;
-            font-weight: 800;
-            font-family: monospace;
-            transition: color 0.5s ease;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .simple-text {
+                display: block;
+                position: absolute;
+                bottom: -40px;
+                width: 120px;
+                text-align: center;
+                color: var(--text-color);
+                font-size: 16pt;
+                font-weight: 800;
+                font-family: monospace;
+                transition: color 0.5s ease;
+            }
         }
 
         .torch {
             display: flex;
             justify-content: center;
-            height: 150px;
+            height: 80px;
+            transform: scale(0.7);
+            transform-origin: top right;
+        }
+
+        @media (min-width: 768px) {
+            .torch {
+                height: 150px;
+                transform: scale(1);
+            }
         }
 
         .head,
         .stick {
             position: absolute;
-            width: 30px;
+            width: 20px;
             transform-style: preserve-3d;
             transform: rotateX(-30deg) rotateY(45deg);
         }
 
+        @media (min-width: 768px) {
+            .head,
+            .stick {
+                width: 30px;
+            }
+        }
+
         .stick {
             position: relative;
-            height: 120px;
+            height: 80px;
+        }
+
+        @media (min-width: 768px) {
+            .stick {
+                height: 120px;
+            }
         }
 
         .face {
             position: absolute;
             transform-style: preserve-3d;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             display: grid;
             grid-template-columns: 50% 50%;
             grid-template-rows: 50% 50%;
             background-color: #000000;
         }
 
+        @media (min-width: 768px) {
+            .face {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
         .top {
-            transform: rotateX(90deg) translateZ(15px);
+            transform: rotateX(90deg) translateZ(10px);
+        }
+
+        @media (min-width: 768px) {
+            .top {
+                transform: rotateX(90deg) translateZ(15px);
+            }
         }
 
         .left {
-            transform: rotateY(-90deg) translateZ(15px);
+            transform: rotateY(-90deg) translateZ(10px);
+        }
+
+        @media (min-width: 768px) {
+            .left {
+                transform: rotateY(-90deg) translateZ(15px);
+            }
         }
 
         .right {
-            transform: rotateY(0deg) translateZ(15px);
+            transform: rotateY(0deg) translateZ(10px);
+        }
+
+        @media (min-width: 768px) {
+            .right {
+                transform: rotateY(0deg) translateZ(15px);
+            }
         }
 
         .top div,
@@ -316,21 +423,41 @@
 
         .side {
             position: absolute;
-            width: 30px;
-            height: 120px;
+            width: 20px;
+            height: 80px;
             display: grid;
             grid-template-columns: 50% 50%;
             grid-template-rows: repeat(8, 12.5%);
             cursor: pointer;
-            translate: 0 12px;
+            translate: 0 8px;
+        }
+
+        @media (min-width: 768px) {
+            .side {
+                width: 30px;
+                height: 120px;
+                translate: 0 12px;
+            }
         }
 
         .side-left {
-            transform: rotateY(-90deg) translateZ(15px) translateY(8px);
+            transform: rotateY(-90deg) translateZ(10px) translateY(5px);
+        }
+
+        @media (min-width: 768px) {
+            .side-left {
+                transform: rotateY(-90deg) translateZ(15px) translateY(8px);
+            }
         }
 
         .side-right {
-            transform: rotateY(0deg) translateZ(15px) translateY(8px);
+            transform: rotateY(0deg) translateZ(10px) translateY(5px);
+        }
+
+        @media (min-width: 768px) {
+            .side-right {
+                transform: rotateY(0deg) translateZ(15px) translateY(8px);
+            }
         }
 
         .side-left div,
@@ -480,6 +607,42 @@
         .theme-toggle input:checked ~ .torch .side div:nth-child(16) {
             background-color: #372a17;
         }
+        /* From Uiverse.io by milley69 */ 
+        .loading svg polyline {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            }
+
+            .loading svg polyline#back {
+            fill: none;
+            stroke: #ebd6d6b7;
+            }
+
+            .loading svg polyline#front {
+            fill: none;
+            stroke: #d63739;
+            stroke-dasharray: 48, 144;
+            stroke-dashoffset: 192;
+            animation: dash_682 1.2s linear infinite;
+            }
+
+            @keyframes dash_682 {
+            72.5% {
+                opacity: 0;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+            }
+            #bloodconnect {
+            font-size: 1.5em;
+            color: #5f0507;
+            font-family: 'Gill Sans', 'Gill Sans MT';
+            font-weight: 800;
+            }
     </style>
 </head>
 <body>
@@ -552,10 +715,15 @@
 
     <div class="container">
         <div class="blood-donation-text">
-            <h1>Blood Connect</h1>
-            <p>
+            <div class="loading" style="text-align: center;" id="bloodconnect">
+                <h1>Blood<svg width="64px" height="48px">
+                    <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+                <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+                </svg>Connect</h1>
+            </div>
+            <p style="text-align: center;">
                 Login to access the admin panel. <br>
-                Manage the requests and donors for blood donation.
+                Manage the requests and donors.
             </p>
         </div>
         <form id="loginForm" class="form">
