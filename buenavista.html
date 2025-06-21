@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodConnect - Donate Blood in Buenavista</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+        }
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .header a {
+            color: black;
+            text-decoration: none;
+            margin: 5px 15px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+        .navbar {
+            background-color: #da1626 !important;
+            padding: 10px 20px;
+        }
+        .navbar-brand {
+            font-size: 22px;
+            font-weight: bold;
+            color: white !important;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 16px;
+            margin: 0 10px;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ffd700 !important;
+            transform: scale(1.1);
+        }
+        .navbar-toggler {
+            border: none;
+            background-color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #312929;
+        }
+        .navbar-toggler-icon {
+            filter: invert(100%);
+        }
+        .navbar img{
+            border-radius: 30px;
+        }
+        .btn-outline-light {
+            border-color: rgb(0, 0, 0);
+            color: rgb(0, 0, 0);
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            background-color: #d49711;
+            box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.3);
+        }
+        .btn-outline-light:hover {
+            background-color: #ffae00;
+            color: #ffffff;
+            box-shadow: 0px 10px 5px rgba(235, 199, 0, 0.87);
+        }
+        .card {
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 20px;
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 10px #dc3545;
+        }
+        @media (max-width: 768px) {
+            .card {
+                min-height: auto;
+            }
+        }
+        #sign{
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #cc3c37;
+            color: #f8f9fa;
+            font-size: 16px;
+        }
+        #sign:hover{
+            background-color: #ffae00;
+        }
+        #send{
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #1258c2;
+            color: #f8f9fa;
+            font-size: 16px;
+            box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.3);
+        }
+        #send:hover{
+            background-color: #ffae00;
+        }
+        #message{
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #312929;
+        }
+        .donate-button {
+            color: rgb(255, 255, 255);
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            font-size: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #da1626;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .donate-button:hover {
+            background-color: #ffae00;
+            color: #ffffff;
+        }
+        #buenavista{
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            border: 2px solid #555555;
+        }
+        #hospital{
+            width: 80%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 30px;
+            margin-bottom: 30px;
+        }
+        #place{
+            text-align: center;
+        }
+        .footer {
+            background-color: rgb(230, 226, 226);
+            color: rgb(31, 29, 29);
+            padding: 40px 0;
+        }
+        .footer a {
+            color: #333;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header text-center bg-light" id="#top">
+        <a class="text-dark" href="tel:+639918821655">📞 (+63) 9918-821-655</a>
+        <a class="text-dark" href="mailto:info@example.com">✉️ info@example.com</a>
+        <a class="text-dark" href="https://goo.gl/maps/example" target="_blank">📍 Buenavista, Agusan del Norte</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="heart.webp" alt="logo" class="me-2" style="width: 40px; height: 40px;">
+                BloodConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="whygiveblood.html">Why give Blood</a></li>
+                    <li class="nav-item"><a class="nav-link" href="whocangiveblood.html">Donation Process</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wheretodonate.html">Where to Donate</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News & Campaigns</a></li>
+                </ul>
+                <div class="d-flex flex-column flex-lg-row align-items-center ms-lg-2">
+                    <a href="beforeyoudonate.html" class="btn btn-outline-light me-lg-2 mb-2 mb-lg-0">Donate</a>
+                    <a href="beforeyourequest.html" class="btn btn-outline-light me-lg-2 mb-2 mb-lg-0">Request</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container text-left mt-4">
+        <button class="text-light mb-5" id="sign"><a style="color: white;" href="wheretodonate.html">Back</a></button>
+        
+        <h1>Donate Blood in Buenavista</h1>
+        <p>Blood donation in Buenavista plays a vital role in supporting the healthcare needs of this coastal municipality. Your donation helps maintain the blood supply for emergency cases, childbirth complications, and patients undergoing surgeries at local medical facilities.</p>
+        
+        <h3>Community Impact</h3>
+        <p>Buenavista's blood donation program serves not just the town proper but also neighboring barangays. By donating here, you directly contribute to:</p>
+        <ul>
+            <li><b>Local Healthcare:</b> Supporting Buenavista District Hospital and rural health units</li>
+            <li><b>Fisherfolk Communities:</b> Providing emergency blood for fishing-related accidents</li>
+            <li><b>Maternal Care:</b> Helping mothers with pregnancy complications</li>
+        </ul>
+        
+        <div id="place">
+            <img id="buenavista" src="buenavista.png" alt="Map of Buenavista">
+        </div>
+
+        <div class="mt-5">
+            <h2>Blood Donation Facilities in Buenavista</h2>
+            <p>We use <b>Google Maps</b> to provide accurate locations and contact information for these facilities.</p>
+            <p>✅ Click on any image below to view the location on Google Maps</p>
+            
+            <ol>
+                <li>
+                    <div class="card text-center"style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/Buenavista+Primary+Health+Care+Center/@8.9744079,125.4096704,19z/data=!4m10!1m2!2m1!1sBuenavista+District+Hospital!3m6!1s0x3301c70053fc0343:0xade9ef1b9639fc66!8m2!3d8.974457!4d125.410436!15sChxCdWVuYXZpc3RhIERpc3RyaWN0IEhvc3BpdGFskgENZXN0YWJsaXNobWVudKoBZgoIL20vMGhwbnIQASoVIhFkaXN0cmljdCBob3NwaXRhbCgAMh8QASIbEK5XreCZmG8Aig3pyzi4NTzNwf0VcNIul4xdMiAQAiIcYnVlbmF2aXN0YSBkaXN0cmljdCBob3NwaXRhbOABAA!16s%2Fg%2F11y74n46_x?entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                            <img id="hospital" src="BuenavistaHospital1.jpg" alt="Buenavista Primary Health Care Center">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Buenavista Primary Health Care Center</span>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="card text-center"style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/Buenavista+Rural+Health+Unit/@8.9745086,125.4089731,19z/data=!4m10!1m2!2m1!1sBuenavista+District+Hospital!3m6!1s0x3301c7bd60400e67:0x90fff4acf2b85514!8m2!3d8.9746306!4d125.4097325!15sChxCdWVuYXZpc3RhIERpc3RyaWN0IEhvc3BpdGFskgEXY29tbXVuaXR5X2hlYWx0aF9jZW50ZXKqAWYKCC9tLzBocG5yEAEqFSIRZGlzdHJpY3QgaG9zcGl0YWwoADIfEAEiGxCuV63gmZhvAIoN6cs4uDU8zcH9FXDSLpeMXTIgEAIiHGJ1ZW5hdmlzdGEgZGlzdHJpY3QgaG9zcGl0YWzgAQA!16s%2Fg%2F11bzvxj2jp?entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                            <img id="hospital" src="BuenavistaHospital2.jpg" alt="Buenavista Rural Health Unit">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Buenavista Rural Health Unit</span>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="card text-center"style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/BARANGAY+HEALTH+STATION/@8.9724747,125.4103032,17z/data=!4m10!1m2!2m1!1sBarangay+Health+Stations!3m6!1s0x3301c79368ebd235:0x98df119c2ea6c838!8m2!3d8.9725904!4d125.4140512!15sChhCYXJhbmdheSBIZWFsdGggU3RhdGlvbnOqAWkKCC9tLzBrdDUxEAEqHCIYYmFyYW5nYXkgaGVhbHRoIHN0YXRpb25zKAAyHxABIhtuAHhWjVj4OPe-BR_x-ZBPCp55X-hkzPu4xOYyHBACIhhiYXJhbmdheSBoZWFsdGggc3RhdGlvbnPgAQA!16s%2Fg%2F11lz5jylt5?entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                            <img id="hospital" src="BuenavistaHospital3.jpg" alt="Barangay Health Stations">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Barangay Health Stations</span>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="card text-center"style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                        <a href="https://www.google.com/maps/place/BUENAVISTA+DIAGNOSTIC+LABORATORY/@8.9703331,125.4048494,17z/data=!3m1!4b1!4m6!3m5!1s0x3301d13cc25882bd:0x74dbb42db33b848d!8m2!3d8.9703278!4d125.4074243!16s%2Fg%2F11t5jbnc7p?entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                            <img id="hospital" src="BuenavistaHospital4.jpg" alt="Buenavista Diagnostic Laboratory">
+                        </a>
+                        <span style="font-size: 1.2em; font-weight: bold;">Buenavista Diagnostic Laboratory</span>
+                    </div>
+                </li>
+            </ol>
+            
+            <div class="row">
+                <div class="col-md-4 ">
+                    <div class="card text-center p-3">
+                        <br>
+                        <h3>Become a blood donor</h3>
+                        <a href="beforeyoudonate.html" class="donate-button">Donate now!</a>
+                    </div><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Blood Connect</h5>
+                    <p>Your blood donation in Buenavista helps save lives throughout the municipality and surrounding areas.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Links</h5>
+                    <a class="text-dark" href="https://www.facebook.com/profile.php?id=100087208967948">Facebook page</a><br>
+                    <a class="text-dark" href="https://www.youtube.com/@BloodConnect-2025">YouTube page</a><br>
+                </div>
+                <div class="col-md-4">
+                    <h5>Message Us</h5>
+                    <p>What is your concern?</p>
+                    <textarea id="message" class="form-control mb-4" placeholder="Your Message" required></textarea>
+                    <button class="btn mt-2" id="send">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="text-center p-2" style="background-color: #2046c2;">
+        <p class="text-white">&copy; 2025 BloodConnect. All rights reserved.</p>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -40,7 +40,7 @@
             }
         }
         #best {
-            background-color: #da1626;
+            background-color: #103394;
         }
         .navbar {
             background-color: #da1626 !important;
@@ -254,6 +254,37 @@
             flex-direction: column; /* Ensures content stacks properly */
             width: 100%;
         }
+        /* From Uiverse.io by milley69 */ 
+            .loading svg polyline {
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            }
+
+            .loading svg polyline#back {
+            fill: none;
+            stroke: #cfd1c686;
+            }
+
+            .loading svg polyline#front {
+            fill: none;
+            stroke: #ffffff;
+            stroke-dasharray: 48, 144;
+            stroke-dashoffset: 192;
+            animation: dash_682 1.4s linear infinite;
+            }
+
+            @keyframes dash_682 {
+            72.5% {
+                opacity: 0;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+            }
+
     </style>
 </head>
 <body>
@@ -270,8 +301,16 @@
             <!-- Brand -->
             <a class="navbar-brand d-flex align-items-center" href="index.html">
                 <img src="heart.webp" alt="logo" class="me-2" style="width: 40px; height: 40px;">
-                BloodConnect
-            </a>
+                Blood
+                <!-- From Uiverse.io by milley69 --> 
+            <div class="loading">
+                <svg width="64px" height="48px">
+                    <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+                <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+                </svg>
+            </div>
+            Connect</a>
+            
             <!-- Toggler Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -328,12 +367,8 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </button>
 </div>
-
-    
-    <!-- CTA Section -->
     <div class="text-center text-white py-4" id="best">
-        <h2>NO NEED TO SIGN UP!</h2>
-        <h3>All you need to do is donate or request blood to help speed up the process!</h3>
+        <p class="lead">We need your help now more than ever to continue providing lifesaving blood to hospitals and clinics in Agusan del Norte.</p>
     </div>
 
     <!--ROW-->
@@ -352,7 +387,7 @@
                 <img src="nhs.jpg" alt="logo">
                 <br>
                 <h5>Your town centre venues need lifesavers</h5>
-                <p>We urgently need you to give blood in Nasipit area.</p>
+                <p>We urgently need you to give blood in Agusan del Norte area.</p>
                 <a href="wheretodonate.html">>> About our donation venues</a>
             </div>
         </div>
@@ -390,27 +425,32 @@
 
 <br>
     <!-- Footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Blood Connect</h5>
-                    <p>We need your help now more than ever to continue providing lifesaving blood to hospitals and clinics in Nasipit.</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Links</h5>
-                    <a class="text-dark" href="https://www.facebook.com/profile.php?id=100087208967948">Facebook page</a><br>
-                    <a class="text-dark"  href="https://www.youtube.com/@BloodConnect-2025">YouTube page</a><br>
-                </div>
-                <div class="col-md-4">
-                    <h5>Message Us</h5>
-                    <p>What is your concern?</p>
-                    <textarea id="message" class="form-control mb-4" placeholder="Your Message" required></textarea>
-                    <button class="btn mt-2" id="send">Send Message</button>
-                </div>
+    <div class="footer small">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <br>
+                <h6>Blood Connect</h6>
+                <p>We need your help now more than ever to continue providing lifesaving blood to hospitals and clinics in Agusan del Norte</p>
+            </div>
+            <div class="col-md-4">
+                <br>
+                <h6>Links</h6>
+                <a class="text-dark" href="https://www.facebook.com/profile.php?id=100087208967948">Facebook</a><br>
+                <a class="text-dark" href="https://www.youtube.com/@BloodConnect-2025">YouTube</a><br>
+                <a class="text-dark" href="https://redcross.org.ph/">RedCross</a>
+            </div>
+            <div class="col-md-4">
+                <br>
+                <h6>Message Us</h6>
+                <p>What is your concern?</p>
+                <textarea id="message" class="form-control form-control-sm mb-3" placeholder="Your Message" required></textarea>
+                <button class="btn btn-sm mt-2" id="send">Send Message</button>
             </div>
         </div>
     </div>
+</div>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
