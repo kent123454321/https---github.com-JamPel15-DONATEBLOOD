@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BloodConnect - Donate Blood</title>
+    <title>BloodConnect - Donate Blood in Kitcharao</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* All the same CSS styles from previous pages */
         body {
             font-family: Arial, sans-serif;
             background-color: whitesmoke;
@@ -20,7 +21,6 @@
             padding: 10px;
             text-align: center;
         }
-
         .header a {
             color: black;
             text-decoration: none;
@@ -28,7 +28,6 @@
             font-size: 14px;
             white-space: nowrap;
         }
-
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -77,13 +76,11 @@
             transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
             background-color: #d49711;
             box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.3);
-
         }
         .btn-outline-light:hover {
             background-color: #ffae00;
             color: #ffffff;
             box-shadow: 0px 10px 5px rgba(235, 199, 0, 0.87);
-
         }
         .hero {
             background: url('blod.jpg') center/cover;
@@ -126,12 +123,10 @@
         .carousel {
             position: relative;
         }
-
         .carousel img {
             height: 500px; 
             object-fit: cover;
         }
-
         .carousel-caption {
             position: absolute;
             top: 50%;
@@ -142,7 +137,6 @@
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
             width: 100%;
         }
-
         .carousel::before {
             content: "";
             position: absolute;
@@ -152,13 +146,12 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.4); 
         }
-            .row {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .card {
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
             min-height: 280px;
             display: flex;
             flex-direction: column;
@@ -167,74 +160,68 @@
             padding: 15px;
             border-radius: 8px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
         }
         .card img {
             max-width: 100%;
             height: auto;
             border-radius: 5px;
-            display: block;         
-            margin-left: auto;      
-            margin-right: auto;
         }
-
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0px 10px 10px #dc3545;
+        }
+        .button {
+            display: inline-block;
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
         }
         @media (max-width: 768px) {
             .card {
                 min-height: auto;
             }
         }
-            .button {
-                display: inline-block;
-                background-color: #dc3545;
-                color: white;
-                padding: 10px 15px;
-                text-decoration: none;
-                border-radius: 5px;
-            }
-            @media (max-width: 768px) {
-                .card {
-                    min-height: auto;
-                }
-            }
-            .btn-custom {
-                min-width: 120px; 
-                padding: 10px 20px; 
-                font-size: 16px; 
-            }
-            #sign{
-                padding: 10px 20px;
-                border-radius: 5px;
-                border: none;
-                background-color: #cc3c37;
-                color: #f8f9fa;
-                font-size: 16px;
-            }
-            #sign:hover{
-                background-color: #ffae00;
-            }
-            #send{
-                padding: 10px 20px;
-                border-radius: 5px;
-                border: none;
-                background-color: #1258c2;
-                color: #f8f9fa;
-                font-size: 16px;
-                box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.3);
-            }
-            #send:hover{
-                background-color: #ffae00;
-            }
-            #message{
-                width: 100%;
-                padding: 10px;
-                border-radius: 5px;
-                border: 1px solid #312929;
-            }
-            #bloodmain {
+        .btn-custom {
+            min-width: 120px; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+        }
+        #sign{
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #cc3c37;
+            color: #f8f9fa;
+            font-size: 16px;
+        }
+        #sign:hover{
+            background-color: #ffae00;
+        }
+        #send{
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #1258c2;
+            color: #f8f9fa;
+            font-size: 16px;
+            box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.3);
+        }
+        #send:hover{
+            background-color: #ffae00;
+        }
+        #message{
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #312929;
+        }
+        #bloodmain {
             margin-top: 30px;
             display: flex;
             justify-content: center;
@@ -259,14 +246,12 @@
             text-align: center;
             margin-bottom: 20px;
         }
-
         .donate-button:hover {
             background-color: #ffae00;
             color: #ffffff;
             border-color: rgb(255, 255, 255);
         }
-
-        #nasipit {
+        #kitcharao{
             width: 100%;
             max-width: 1000px;
             height: auto;
@@ -275,7 +260,6 @@
             border-color: #555555;
             border: solid;
         }
-
         #hospital{
             width: 80%;
             max-width: 1000px; 
@@ -283,50 +267,8 @@
             border-radius: 30px;
             margin-bottom: 30px;
         }
-
         #place{
             text-align: center;
-        }
-
-        .find-nearby-button {
-            background-color: #4CAF50; 
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        #nearby-clinics {
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        #nearby-clinics ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #nearby-clinics li {
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-
-        #nearby-clinics li:hover {
-            background-color: #eee;
-        }
-
-        #nearby-clinics p {
-            font-style: italic;
-            color: #777;
         }
     </style>
 </head>
@@ -337,7 +279,7 @@
         <a class="text-dark" href="tel:+639918821655">📞 (+63) 9918-821-655</a>
         <a class="text-dark" href="mailto:info@example.com">✉️ info@example.com</a>
         <a class="text-dark"
-            href="https://www.google.com/local/place/fid/0x3301ca2f04581cbb:0xe4e2656c7835d5f2/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3DpdVDUhSkANIHs_1mfcIGRw%26cb_client%3Dlu.gallery.gps%26w%3D160%26h%3D106%26yaw%3D308.6075%26pitch%3D0%26thumbfov%3D100&amp;ik=CAISFnBkVkRVaFNrQU5JSHNfMW1mY0lHUnc%3D" target="_blank">📍 Agusan del Norte, Nasipit, SMCC</a>
+            href="https://www.google.com/maps/place/Kitcharao,+Agusan+Del+Norte/@9.45,125.5833333,13z/data=!3m1!4b1!4m6!3m5!1s0x3301d1b2a4c82ff1:0xdfee6818746e3cdc!8m2!3d9.45!4d125.5833333!16zL20vMDJ4d3Bm?entry=ttu" target="_blank">📍 Kitcharao, Agusan del Norte</a>
     </div>
 
     <!-- Navbar -->
@@ -372,25 +314,26 @@
 
     <!--Why give blood-->
     <div class="container text-left mt-4">
-
-            <br>
-            <button class="text-light mb-5" id="sign"><a style="color: white;" href="wheretodonate.html">Back</a></button>
+        <br>
+        <button class="text-light mb-5" id="sign"><a style="color: white;" href="wheretodonate.html">Back</a></button>
         
-    <br><h1>Donate Blood in Nasipit</h1>
-        <p>Donating blood is a vital act of altruism that can save lives and improve the health of recipients. In Nasipit, as in the rest of the Philippines, the need for blood donations is constant, supporting patients undergoing surgeries, trauma victims, and individuals with medical conditions like anemia.</p>
+        <br><h1>Donate Blood in Kitcharao</h1>
+        <p>Blood donation is a vital community service that helps save lives in Kitcharao. As an important municipality in Agusan del Norte, Kitcharao has a growing need for blood donations to support local healthcare services, emergency cases, and patients with chronic illnesses.</p>
+        
         <h3>Health Benefits for Donors</h3>
-        <p>Beyond the life-saving impact on recipients, donating blood offers health benefits for donors:</p>
+        <p>Donating blood not only helps others but also provides benefits for donors:</p>
         <ul>
-            <li><b>Iron Regulation: </b>Regular blood donation helps in reducing iron overload, which can lower the risk of heart disease.</li>
-            <li><b>Health Monitoring: </b>Each donation involves a basic health check, providing an opportunity to monitor vital signs and detect potential health issues early.</li>
-            <li><b>Psychological Well-being: </b>The act of donating blood can boost mental health by fostering a sense of purpose and community connection.</li>
+            <li><b>Health Check: </b>Each donation includes a free mini-physical that checks your blood pressure, hemoglobin levels, and more.</li>
+            <li><b>Reduced Iron Levels: </b>Regular blood donation helps reduce iron stores in the body, which may lower heart disease risk.</li>
+            <li><b>Community Impact: </b>Your donation directly helps neighbors and community members in need.</li>
         </ul>
+        
         <div id="place">
-            <img id="nasipit" src="nasipit.png" alt="Nasipit">
+            <img id="kitcharao" src="kitcharao.png" alt="Kitcharao Municipality">
         </div>
 
         <div><br><br>
-            <h2>Hospitals and Clinics in Nasipit:</h2>
+            <h2>Hospitals and Clinics in Kitcharao:</h2>
             <p>"We use <b>Google Maps</b> to know the complete address and phone number of the Hospital and Clinics"</p>
             <p>✅Click on any image below to view the location on Google Maps</p>
             
@@ -398,46 +341,25 @@
             <div class="row"></div>
             <ol>
                 <li>
-                    <div class="card"style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
+                    <div class="card"
+                        style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
                         <a
-                            href="https://www.google.com/maps/place/Nasipit+District+Hospital/@8.9765791,125.3618306,17z/data=!3m1!4b1!4m6!3m5!1s0x3301c83ebd91df15:0x83aa9d39840be4b4!8m2!3d8.9765738!4d125.3644109!16s%2Fg%2F11cr_tz039?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-                            <img id="hospital" src="nasipithospital1.jpg" alt="Nasipit District Hospital"
+                            href="https://www.google.com/maps/place/Kitcharao+District+Hospital/@9.4551286,125.5707962,16z/data=!4m6!3m5!1s0x33016cd792c97cb3:0xb3d191a4308627d8!8m2!3d9.4551233!4d125.575946!16s%2Fg%2F1tj6rbwt?entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                            <img id="hospital" src="kitcharaohospital1.jpg" alt="Kitcharao District Hospital"
                                 style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
                         </a>
-                        <span style="font-size: 1.2em; font-weight: bold;">Nasipit District Hospital</span>
+                        <span style="font-size: 1.2em; font-weight: bold;">Kitcharao District Hospital</span>
                     </div>
                 </li>
                 <li>
                     <div class="card"
                         style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
                         <a
-                            href="https://www.google.com/maps/place/Manuel+J.+Santos+Primary+Care+Center+Nasipit+branch/@8.9848238,125.3125262,14z/data=!4m10!1m2!2m1!1shealth+center+in+Nasipit,+Agusan+Del+Norte!3m6!1s0x3301c9be0288ba19:0x6cbf2668441fc93a!8m2!3d8.9846592!4d125.3456545!15sCipoZWFsdGggY2VudGVyIGluIE5hc2lwaXQsIEFndXNhbiBEZWwgTm9ydGWSAQpsYWJvcmF0b3J54AEA!16s%2Fg%2F11kj13gs1r?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-                            <img id="hospital" src="nasipithospital2.jpg"
-                                alt="Manuel J. Santos Primary Care Center Nasipit branch"
+                            href="https://www.google.com/maps/place/Municipal+Health+Office+-+Kitcharao/@9.4499216,125.572663,16z/data=!4m10!1m2!2m1!1sKitcharao+Rural+Health+Unit!3m6!1s0x33016d000174ae59:0x2bef428140ae32e8!8m2!3d9.450037!4d125.5788333!15sChtLaXRjaGFyYW8gUnVyYWwgSGVhbHRoIFVuaXSSARdjb21tdW5pdHlfaGVhbHRoX2NlbnRlcqoBZQoIL20vMGt0NTEQASoVIhFydXJhbCBoZWFsdGggdW5pdCgAMh8QASIbMQ-s0a6HITnhY1sCrAuUAR0VQhKmsjgwccsWMh8QAiIba2l0Y2hhcmFvIHJ1cmFsIGhlYWx0aCB1bml04AEA!16s%2Fg%2F11lckvqpys?entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                            <img id="hospital" src="kitcharaohospital2.jpg" alt="Municipal Health Office - Kitcharao"
                                 style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
                         </a>
-                        <span style="font-size: 1.2em; font-weight: bold;">Manuel J. Santos Primary Care Center Nasipit branch</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="card"
-                        style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
-                        <a
-                            href="https://www.google.com/maps/place/Nasipit+RHU+and+FP+Center/@8.9848238,125.3125262,14z/data=!4m10!1m2!2m1!1shealth+center+in+Nasipit,+Agusan+Del+Norte!3m6!1s0x3301c9ce31e1ae27:0xaac7045d607aadf7!8m2!3d8.9840819!4d125.3385355!15sCipoZWFsdGggY2VudGVyIGluIE5hc2lwaXQsIEFndXNhbiBEZWwgTm9ydGWSARNnb3Zlcm5tZW50X2hvc3BpdGFs4AEA!16s%2Fg%2F11cr_rkhfw?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-                            <img id="hospital" src="nasipithospital3.jpg" alt="Nasipit RHU and FP Center"
-                                style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
-                        </a>
-                        <span style="font-size: 1.2em; font-weight: bold;">Nasipit RHU and FP Center</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="card"
-                        style="display: flex; align-items: center; padding: 10px; border: 3px solid #555555; margin-bottom: 10px;">
-                        <a href="https://www.google.com/maps/place/Catamina+Clinic+and+Ambulatory+Surgery+Center/@8.9618324,125.3019315,14z/data=!4m10!1m2!2m1!1shealth+center+in+Nasipit,+Agusan+Del+Norte!3m6!1s0x3301c9ecf8a53005:0xde661be6cc35e066!8m2!3d8.9758981!4d125.3456588!15sCipoZWFsdGggY2VudGVyIGluIE5hc2lwaXQsIEFndXNhbiBEZWwgTm9ydGVaKyIpaGVhbHRoIGNlbnRlciBpbiBuYXNpcGl0IGFndXNhbiBkZWwgbm9ydGWSARFvcnRob3BlZGljX2NsaW5pY5oBJENoZERTVWhOTUc5blMwVkpRMEZuU1VSZk9GQnBTMnBSUlJBQuABAPoBBAgdEBk!16s%2Fg%2F11h1j32w99?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-                            <img id="hospital" src="nasipithospital4.jpg" alt="Catamina Clinic and Ambulatory Surgery Center"
-                                style="width: 550px; height: auto; margin-right: 20px; max-width: 100%;">
-                        </a>
-                        <span style="font-size: 1.2em; font-weight: bold; text-align: center;">Catamina Clinic and Ambulatory Surgery Center</span>
+                        <span style="font-size: 1.2em; font-weight: bold;">Municipal Health Office - Kitcharao</span>
                     </div>
                 </li>
             </ol>
@@ -451,7 +373,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Footer -->
@@ -460,7 +381,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <h5>Blood Connect</h5>
-                    <p>We need your help now more than ever to continue providing lifesaving blood to hospitals and clinics in Nasipit.</p>
+                    <p>We need your help now more than ever to continue providing lifesaving blood to hospitals and clinics in Kitcharao.</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Links</h5>
@@ -476,8 +397,8 @@
             </div>
         </div>
     </div>
-    <div class="text-center p-2" style="background-color: #2046c2;">
-        <p class="text-white">&copy; 2025 BloodConnect. All rights reserved.</p>
+        <div class="text-center p-2" style="background-color: #2046c2;">
+                        <p class="text-white">&copy; 2025 BloodConnect. All rights reserved.</p>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
